@@ -1,0 +1,142 @@
+{
+  "id": "ask-for-the-bill",
+  "level": "L00",
+  "title": {
+    "en": "Ask for the bill"
+  },
+  "circumstance": {
+    "en": "You have finished eating or drinking in a café or restaurant. You want to pay and leave."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S011-ask-for-the-bill.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/backgrounds/ja/cafe-bill.webp",
+          "corePhrase": "お会計をください。",
+          "romanization": "o-kaikei o kudasai",
+          "characters": [
+            {
+              "id": "customer",
+              "src": "/assets/characters/customer-casual.png",
+              "position": { "x": 18, "y": 58 }
+            },
+            {
+              "id": "staff",
+              "src": "/assets/characters/staff-apron.png",
+              "position": { "x": 70, "y": 50 }
+            }
+          ],
+          "dialogue": [
+            {
+              "speaker": "customer",
+              "text": "すみません、お会計をください。",
+              "romanization": "sumimasen, o-kaikei o kudasai"
+            },
+            {
+              "speaker": "staff",
+              "text": "はい、少々お待ちください。",
+              "romanization": "hai, shoushou omachi kudasai"
+            },
+            {
+              "speaker": "staff",
+              "text": "3000円です。",
+              "romanization": "sanzen en desu"
+            },
+            {
+              "speaker": "customer",
+              "text": "ありがとうございます。",
+              "romanization": "arigatou gozaimasu"
+            }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/backgrounds/ja/cafe-bill.webp",
+          "corePhrase": "お会計。",
+          "romanization": "o-kaikei",
+          "characters": [
+            {
+              "id": "customer",
+              "src": "/assets/characters/customer-casual.png",
+              "position": { "x": 18, "y": 58 }
+            },
+            {
+              "id": "staff",
+              "src": "/assets/characters/staff-apron.png",
+              "position": { "x": 70, "y": 50 }
+            }
+          ],
+          "dialogue": [
+            {
+              "speaker": "customer",
+              "text": "お会計。",
+              "romanization": "o-kaikei"
+            },
+            {
+              "speaker": "staff",
+              "text": "はい。",
+              "romanization": "hai"
+            },
+            {
+              "speaker": "staff",
+              "text": "3000円。",
+              "romanization": "sanzen en"
+            },
+            {
+              "speaker": "customer",
+              "text": "ありがとう。",
+              "romanization": "arigatou"
+            }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/backgrounds/fr/cafe-bill.webp",
+          "corePhrase": "L'addition, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            {
+              "id": "customer",
+              "src": "/assets/characters/customer-casual.png",
+              "position": { "x": 18, "y": 58 }
+            },
+            {
+              "id": "staff",
+              "src": "/assets/characters/staff-apron.png",
+              "position": { "x": 70, "y": 50 }
+            }
+          ],
+          "dialogue": [
+            {
+              "speaker": "customer",
+              "text": "Excusez-moi, l'addition s'il vous plaît."
+            },
+            {
+              "speaker": "staff",
+              "text": "Oui, un instant s'il vous plaît."
+            },
+            {
+              "speaker": "staff",
+              "text": "Ça fait 25 euros."
+            },
+            {
+              "speaker": "customer",
+              "text": "Merci."
+            }
+          ]
+        }
+      }
+    }
+  }
+}
