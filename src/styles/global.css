@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 248 250 252; /* slate-50 */
+    --fg: 15 23 42;    /* slate-900 */
+    --muted: 100 116 139;
+    --glass-bg: 255 255 255;
+    --glass-border: 226 232 240;
+    --accent: 34 211 238; /* neon cyan */
+    --accent-2: 232 121 249; /* neon magenta */
+  }
+
+  .dark {
+    --bg: 2 6 23;       /* near black */
+    --fg: 241 245 249;
+    --muted: 148 163 184;
+    --glass-bg: 15 23 42;
+    --glass-border: 51 65 85;
+    --accent: 34 211 238;
+    --accent-2: 232 121 249;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-[rgb(var(--bg))] text-[rgb(var(--fg))] font-sans;
+    min-height: 100dvh;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/60 dark:bg-slate-900/60 backdrop-blur-glass border border-white/40 dark:border-slate-700/50 shadow-glass dark:shadow-glass-dark;
+  }
+
+  .glass-strong {
+    @apply bg-white/75 dark:bg-slate-900/75 backdrop-blur-xl border border-white/50 dark:border-slate-600/60 shadow-glass;
+  }
+
+  .neon-text {
+    @apply text-neon-cyan drop-shadow-[0_0_8px_rgba(34,211,238,0.5)];
+  }
+
+  .neon-border {
+    @apply border-neon-cyan/40 shadow-neon;
+  }
+}
