@@ -90,11 +90,11 @@ export default function App() {
       />
 
       <main className="flex-1 relative overflow-hidden min-w-0">
-        {/* Mobile menu button — always available when sidebar is closed */}
+        {/* Mobile menu button — borderless, no glass frame */}
         {!sidebarOpen && (
           <button
             onClick={() => setSidebarOpen(true)}
-            className="md:hidden fixed top-3 left-3 z-50 p-2.5 rounded-xl glass-strong shadow-lg"
+            className="md:hidden fixed top-3.5 left-3 z-50 p-2 rounded-lg text-[rgb(var(--fg))] hover:bg-black/5 dark:hover:bg-white/10 transition"
             aria-label="Open menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
