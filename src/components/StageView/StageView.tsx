@@ -96,16 +96,18 @@ export default function StageView({
         </button>
       </div>
 
-      {/* Mobile stage dropdown — below header, above stage image */}
-      <StageDropdown
-        levels={levels}
-        activeStageId={ui.stageId}
-        activeTitle={stage.title.en}
-        onSelect={onSelectStage}
-      />
-
       {/* Stage + controls */}
       <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 py-3 sm:py-4">
+        {/* Mobile dropdown sits just above the stage image */}
+        <div className="w-full max-w-6xl lg:max-w-7xl">
+          <StageDropdown
+            levels={levels}
+            activeStageId={ui.stageId}
+            activeTitle={stage.title.en}
+            onSelect={onSelectStage}
+          />
+        </div>
+
         <div
           className="
             relative w-full
@@ -128,32 +130,19 @@ export default function StageView({
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Speech bubble
-              Mobile: centered, lower
-              Tablet/desktop: different vertical levels + horizontal lean toward speaker */}
+          {/* Mobile bubble — centered, lower in the frame */}
           {currentTurn && (
-            <div
-              className={`
-                absolute z-20 pointer-events-none
-                left-3 right-3
-                md:left-auto md:right-auto md:w-[min(300px,36%)]
-                ${
-                  currentSpeaker === 'customer'
-                    ? 'top-16 md:top-3 md:left-[8%]'
-                    : 'top-14 md:top-16 md:left-[58%]'
-                }
-              `}
-            >
-              <div className="w-full max-w-[min(320px,100%)] md:max-w-none mx-auto md:mx-0">
+            <div className="md:hidden absolute left-3 right-3 top-14 z-20 flex justify-center pointer-events-none">
+              <div className="w-full max-w-[min(320px,100%)]">
                 <Dialogue
                   turn={currentTurn}
-                  pointerOffset={currentSpeaker === 'customer' ? 35 : 65}
+                  pointerOffset={currentSpeaker === 'customer' ? 30 : 70}
                 />
               </div>
             </div>
           )}
 
-          {/* Characters */}
+          {/* Characters + desktop bubble anchored above the speaker */}
           <div className="absolute inset-0 overflow-hidden">
             {variant.characters?.map((ch) => {
               const isSpeaking = ch.id === currentSpeaker;
@@ -179,6 +168,13 @@ export default function StageView({
                     top: isCustomer ? '42%' : '40%',
                   }}
                 >
+                  {/* Desktop/tablet: bubble sits directly above this character */}
+                  {isSpeaking && currentTurn && (
+                    <div className="hidden md:block absolute bottom-full mb-1 left-1/2 -translate-x-1/2 w-[min(280px,42vw)] z-20">
+                      <Dialogue turn={currentTurn} pointerOffset={50} />
+                    </div>
+                  )}
+
                   <img
                     src={ch.src}
                     alt={ch.id}

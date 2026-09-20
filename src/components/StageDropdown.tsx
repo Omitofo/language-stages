@@ -10,7 +10,7 @@ interface Props {
 
 /**
  * Mobile-only stage picker: a button that opens a scrollable dropdown menu.
- * Lives between the header and the stage canvas.
+ * Lives just above the stage canvas.
  */
 export default function StageDropdown({
   levels,
@@ -36,7 +36,7 @@ export default function StageDropdown({
   const label = activeTitle || 'Select a stage';
 
   return (
-    <div ref={rootRef} className="md:hidden relative w-full px-3 pt-4 pb-1 z-40">
+    <div ref={rootRef} className="md:hidden relative w-full px-0 pt-0 pb-2 z-40">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -63,7 +63,7 @@ export default function StageDropdown({
       {open && (
         <div
           className="
-            absolute left-3 right-3 mt-1.5
+            absolute left-0 right-0 mt-1.5
             max-h-[min(50vh,360px)] overflow-y-auto
             rounded-xl glass-strong shadow-xl
             py-2 z-50
