@@ -90,25 +90,37 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         {/* Soft overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
 
-        {/* Characters + Dialogue */}
-        <div className="absolute inset-0">
-          {/* Characters (real PNG assets) */}
-          {variant.characters?.map((ch) => (
-            <div
-              key={ch.id}
-              className="absolute w-28 md:w-40 h-40 md:h-56 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              style={{ left: `${ch.position.x}%`, top: `${ch.position.y}%` }}
-            >
-              <img
-                src={ch.src}
-                alt={ch.id}
-                className="w-full h-full object-contain drop-shadow-lg select-none"
-                draggable={false}
-              />
-            </div>
-          ))}
+        {/* Characters + Dialogue — characters live in the foreground layer */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Characters: large, lower, bottom half clipped under the stage for a strong 2D foreground feel */}
+          {variant.characters?.map((ch) => {
+            // Slightly different vertical bias so they don't sit at the exact same height
+            const isCustomer = ch.id === 'customer';
+            const top = isCustomer ? '62%' : '58%';
+            const widthClass = 'w-[42vw] max-w-[220px] md:w-[28vw] md:max-w-[280px] lg:max-w-[320px]';
+            // Tall enough that legs go below the viewport
+            const heightClass = 'h-[70vh] max-h-[520px]';
 
-          {/* Dialogue bubbles (current step only for clarity) */}
+            return (
+              <div
+                key={ch.id}
+                className={`absolute ${widthClass} ${heightClass} -translate-x-1/2 pointer-events-none z-[5]`}
+                style={{
+                  left: `${ch.position.x}%`,
+                  top,
+                }}
+              >
+                <img
+                  src={ch.src}
+                  alt={ch.id}
+                  className="w-full h-full object-contain object-top drop-shadow-2xl select-none"
+                  draggable={false}
+                />
+              </div>
+            );
+          })}
+
+          {/* Dialogue bubbles sit above the characters */}
           <Dialogue
             turns={variant.dialogue}
             currentStep={ui.currentStep}
