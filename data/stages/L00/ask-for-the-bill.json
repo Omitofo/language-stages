@@ -16,7 +16,7 @@
       "variants": {
         "polite": {
           "label": "Polite",
-          "background": "/assets/backgrounds/ja/cafe-bill.webp",
+          "background": "/assets/ja/cafe-bill.webp",
           "corePhrase": "お会計をください。",
           "romanization": "o-kaikei o kudasai",
           "characters": [
@@ -56,7 +56,7 @@
         },
         "casual": {
           "label": "Casual",
-          "background": "/assets/backgrounds/ja/cafe-bill.webp",
+          "background": "/assets/ja/cafe-bill.webp",
           "corePhrase": "お会計。",
           "romanization": "o-kaikei",
           "characters": [
@@ -102,7 +102,7 @@
       "variants": {
         "standard": {
           "label": "Standard",
-          "background": "/assets/backgrounds/fr/cafe-bill.webp",
+          "background": "/assets/fr/cafe-bill.webp",
           "corePhrase": "L'addition, s'il vous plaît.",
           "romanization": null,
           "characters": [
