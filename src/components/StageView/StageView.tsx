@@ -52,8 +52,8 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Top bar: language + variant */}
-      <div className="flex items-center justify-between gap-4 px-4 md:px-6 h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0 z-30">
+      {/* Top bar: language + variant — pl-14 on mobile so hamburger doesn't overlap */}
+      <div className="flex items-center justify-between gap-4 pl-14 pr-4 md:px-6 h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0 z-30">
         <div className="flex items-center gap-3">
           <LanguageSwitcher
             languages={availableLanguages.map((code) => ({
@@ -93,29 +93,39 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         {/* Soft overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30 pointer-events-none" />
 
-        {/* Controls overlay (core phrase + prev/next) — sits on top of the scene */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-6 pt-4 pb-3 pointer-events-none">
-          <div className="pointer-events-auto max-w-lg mx-auto space-y-3">
-            <CorePhrase
-              phrase={variant.corePhrase}
-              romanization={variant.romanization}
-            />
-            <StepControls
-              current={ui.currentStep}
-              total={totalSteps}
-              onPrev={prev}
-              onNext={next}
-            />
+        {/* Controls overlay — glass card for contrast */}
+        <div className="absolute top-0 left-0 right-0 z-20 px-3 md:px-6 pt-3 pb-2 pointer-events-none">
+          <div className="pointer-events-auto max-w-lg mx-auto">
+            <div className="glass-strong rounded-2xl px-4 py-3 md:px-5 md:py-4 shadow-xl space-y-3 border border-white/10">
+              <CorePhrase
+                phrase={variant.corePhrase}
+                romanization={variant.romanization}
+              />
+              <StepControls
+                current={ui.currentStep}
+                total={totalSteps}
+                onPrev={prev}
+                onNext={next}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Characters + Dialogue — strong foreground layer */}
+        {/* Mobile: centered speech bubble in a safe zone (avoids going off-frame) */}
+        {currentTurn && (
+          <div className="md:hidden absolute left-3 right-3 top-[7.5rem] z-20 flex justify-center pointer-events-none">
+            <div className="w-full max-w-[min(300px,100%)]">
+              <Dialogue turn={currentTurn} />
+            </div>
+          </div>
+        )}
+
+        {/* Characters + desktop speech bubbles */}
         <div className="absolute inset-0 overflow-hidden">
           {variant.characters?.map((ch) => {
             const isSpeaking = ch.id === currentSpeaker;
             const isCustomer = ch.id === 'customer';
 
-            // --- Responsive character sizing & placement ---
             let left = `${ch.position.x}%`;
             let sizeClass =
               'w-[50vw] max-w-[230px] sm:w-[42vw] sm:max-w-[250px] md:w-[30vw] md:max-w-[320px] lg:max-w-[360px]';
@@ -126,7 +136,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               sizeClass =
                 'w-[58vw] max-w-[270px] sm:w-[46vw] sm:max-w-[270px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
               zClass = 'z-[10]';
-              // Soft center bias on mobile so speaker owns the space
               if (isCustomer) {
                 left = '34%';
               } else {
@@ -139,8 +148,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               zClass = 'z-[4]';
             }
 
-            // Keep characters lower so the top controls have clear space
-            const heightClass = 'h-[72vh] max-h-[560px]';
+            const heightClass = 'h-[70vh] max-h-[540px]';
 
             return (
               <div
@@ -148,14 +156,12 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
                 className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
                 style={{
                   left,
-                  top: isCustomer ? '72%' : '68%',
+                  top: isCustomer ? '74%' : '70%',
                 }}
               >
-                {/* Speech bubble — constrained so it never leaves the stage on mobile */}
+                {/* Desktop only: bubble attached above the character */}
                 {isSpeaking && currentTurn && (
-                  <div
-                    className="absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,82vw)] max-w-[calc(100vw-2rem)]"
-                  >
+                  <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,40vw)]">
                     <Dialogue turn={currentTurn} />
                   </div>
                 )}
