@@ -121,21 +121,21 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               const isCustomer = ch.id === 'customer';
 
               let left = `${ch.position.x}%`;
-              // Base / speaking / idle sizes bumped up for a closer feel
+              // Larger sizes for a close-up feel
               let sizeClass =
-                'w-[58%] max-w-[280px] sm:max-w-[320px] md:w-[38%] md:max-w-[380px] lg:max-w-[420px]';
+                'w-[70%] max-w-[340px] sm:max-w-[380px] md:w-[46%] md:max-w-[460px] lg:max-w-[520px]';
               let opacityClass = 'opacity-100';
               let zClass = 'z-[5]';
 
               if (isSpeaking) {
                 sizeClass =
-                  'w-[68%] max-w-[320px] sm:max-w-[360px] md:w-[42%] md:max-w-[420px] lg:max-w-[460px]';
+                  'w-[82%] max-w-[400px] sm:max-w-[440px] md:w-[52%] md:max-w-[520px] lg:max-w-[580px]';
                 zClass = 'z-[10]';
-                if (isCustomer) left = '32%';
-                else left = '68%';
+                if (isCustomer) left = '30%';
+                else left = '70%';
               } else {
                 sizeClass =
-                  'w-[48%] max-w-[220px] sm:max-w-[260px] md:w-[32%] md:max-w-[340px] lg:max-w-[380px]';
+                  'w-[58%] max-w-[280px] sm:max-w-[320px] md:w-[38%] md:max-w-[400px] lg:max-w-[460px]';
                 opacityClass = 'opacity-55 sm:opacity-75 md:opacity-100';
                 zClass = 'z-[4]';
               }
@@ -143,16 +143,16 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               return (
                 <div
                   key={ch.id}
-                  className={`absolute ${sizeClass} h-[78%] max-h-[560px] -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
+                  className={`absolute ${sizeClass} h-[92%] max-h-[640px] -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
                   style={{
                     left,
-                    // Push characters lower so they sit more in the foreground
-                    top: isCustomer ? '48%' : '44%',
+                    // Lower in the frame so faces sit more in the foreground
+                    top: isCustomer ? '38%' : '34%',
                   }}
                 >
                   {/* Desktop bubble above speaker */}
                   {isSpeaking && currentTurn && (
-                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,38vw)]">
+                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(300px,40vw)]">
                       <Dialogue turn={currentTurn} />
                     </div>
                   )}
