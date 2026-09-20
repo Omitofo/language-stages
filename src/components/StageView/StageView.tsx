@@ -47,6 +47,9 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
     }
   };
 
+  const currentTurn = variant.dialogue[ui.currentStep];
+  const currentSpeaker = currentTurn?.speaker;
+
   return (
     <div className="h-full flex flex-col">
       {/* Top bar: language + variant */}
@@ -83,33 +86,50 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
           style={{
             backgroundImage: `url(${variant.background})`,
-            backgroundColor: '#1e293b', // fallback while image loads
+            backgroundColor: '#1e293b',
           }}
         />
 
         {/* Soft overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/25 pointer-events-none" />
 
-        {/* Characters + Dialogue — characters live in the foreground layer */}
+        {/* Characters + Dialogue — strong foreground layer */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Characters: large, lower, bottom half clipped under the stage for a strong 2D foreground feel */}
           {variant.characters?.map((ch) => {
-            // Slightly different vertical bias so they don't sit at the exact same height
+            const isSpeaking = ch.id === currentSpeaker;
             const isCustomer = ch.id === 'customer';
-            const top = isCustomer ? '62%' : '58%';
-            const widthClass = 'w-[42vw] max-w-[220px] md:w-[28vw] md:max-w-[280px] lg:max-w-[320px]';
-            // Tall enough that legs go below the viewport
-            const heightClass = 'h-[70vh] max-h-[520px]';
+
+            // Horizontal placement from JSON, vertical forced low so legs clip under viewport
+            // Bigger on mobile so they feel close; slightly more restrained on large screens
+            const sizeClass =
+              'w-[55vw] max-w-[260px] sm:w-[48vw] sm:max-w-[280px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
+            // Tall container so only upper ~55-60% of the character is visible
+            const heightClass = 'h-[85vh] max-h-[640px]';
 
             return (
               <div
                 key={ch.id}
-                className={`absolute ${widthClass} ${heightClass} -translate-x-1/2 pointer-events-none z-[5]`}
+                className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none z-[5] transition-all duration-300`}
                 style={{
                   left: `${ch.position.x}%`,
-                  top,
+                  // Push further down so more of the body is clipped
+                  top: isCustomer ? '68%' : '64%',
                 }}
               >
+                {/* Speech bubble — rendered relative to this character so it always stays attached */}
+                {isSpeaking && currentTurn && (
+                  <div
+                    className={`
+                      absolute bottom-full mb-3 z-20
+                      w-max max-w-[min(280px,78vw)]
+                      left-1/2 -translate-x-1/2
+                      ${isCustomer ? 'sm:left-[60%] sm:-translate-x-1/3' : 'sm:left-[40%] sm:-translate-x-2/3'}
+                    `}
+                  >
+                    <Dialogue turn={currentTurn} />
+                  </div>
+                )}
+
                 <img
                   src={ch.src}
                   alt={ch.id}
@@ -119,13 +139,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               </div>
             );
           })}
-
-          {/* Dialogue bubbles sit above the characters */}
-          <Dialogue
-            turns={variant.dialogue}
-            currentStep={ui.currentStep}
-            characters={variant.characters}
-          />
         </div>
       </div>
 
