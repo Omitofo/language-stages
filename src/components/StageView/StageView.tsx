@@ -130,9 +130,14 @@ export default function StageView({
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Mobile bubble — centered, lower in the frame */}
+          {/* Mobile bubble — staff higher, customer a bit lower */}
           {currentTurn && (
-            <div className="md:hidden absolute left-3 right-3 top-14 z-20 flex justify-center pointer-events-none">
+            <div
+              className={`
+                md:hidden absolute left-3 right-3 z-20 flex justify-center pointer-events-none
+                ${currentSpeaker === 'customer' ? 'top-20' : 'top-12'}
+              `}
+            >
               <div className="w-full max-w-[min(320px,100%)]">
                 <Dialogue
                   turn={currentTurn}
