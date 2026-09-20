@@ -1,6 +1,7 @@
-import type { Stage, StageUIState } from '../../types/stage';
+import type { Stage, StageUIState, LevelGroup } from '../../types/stage';
 import LanguageSwitcher from '../LanguageSwitcher';
 import VariantSwitcher from '../VariantSwitcher';
+import StageDropdown from '../StageDropdown';
 import StepControls from './StepControls';
 import Dialogue from './Dialogue';
 
@@ -8,9 +9,21 @@ interface Props {
   stage: Stage;
   ui: StageUIState;
   onUpdateUi: (partial: Partial<StageUIState>) => void;
+  levels: LevelGroup[];
+  onSelectStage: (stageId: string) => void;
+  dark: boolean;
+  onToggleTheme: () => void;
 }
 
-export default function StageView({ stage, ui, onUpdateUi }: Props) {
+export default function StageView({
+  stage,
+  ui,
+  onUpdateUi,
+  levels,
+  onSelectStage,
+  dark,
+  onToggleTheme,
+}: Props) {
   const langData = stage.languages[ui.language];
   if (!langData) return null;
 
@@ -48,13 +61,12 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
 
   const currentTurn = variant.dialogue[ui.currentStep];
   const currentSpeaker = currentTurn?.speaker;
-  // Pointer leans toward the speaker: customer (left) ~28%, staff (right) ~72%
   const pointerOffset = currentSpeaker === 'customer' ? 28 : 72;
 
   return (
     <div className="h-full flex flex-col">
-      {/* Top bar — centered controls, no separator border */}
-      <div className="relative flex items-center justify-center gap-1.5 sm:gap-3 pl-12 pr-3 sm:px-6 h-12 sm:h-14 glass !border-0 shrink-0 z-30">
+      {/* Header — taller, centered, bigger buttons */}
+      <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 sm:h-16 glass !border-0 shrink-0 z-30">
         <LanguageSwitcher
           languages={availableLanguages.map((code) => ({
             code,
@@ -73,20 +85,28 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             onChange={setVariant}
           />
         )}
-        {/* Title sits absolute so it doesn't offset the centered controls */}
         <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[rgb(var(--muted))] hidden md:block truncate max-w-[30%]">
           {stage.title.en}
         </div>
       </div>
 
-      {/* Stage + controls — vertically centered with tighter spacing */}
+      {/* Mobile stage dropdown — below header, above stage image */}
+      <StageDropdown
+        levels={levels}
+        activeStageId={ui.stageId}
+        activeTitle={stage.title.en}
+        onSelect={onSelectStage}
+        dark={dark}
+        onToggleTheme={onToggleTheme}
+      />
+
+      {/* Stage + controls */}
       <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 py-3 sm:py-4">
-        {/* Stage frame */}
         <div
           className="
             relative w-full
             max-w-6xl lg:max-w-7xl
-            h-[min(54vh,500px)] sm:h-[min(56vh,520px)] md:h-[min(58vh,560px)]
+            h-[min(52vh,480px)] sm:h-[min(56vh,520px)] md:h-[min(58vh,560px)]
             rounded-2xl overflow-hidden
             border border-white/25 dark:border-white/10
             shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]
@@ -94,7 +114,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             shrink-0
           "
         >
-          {/* Background */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -103,15 +122,14 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             }}
           />
 
-          {/* Soft overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Speech bubble — inside frame; lower on mobile when customer speaks */}
+          {/* Speech bubble — lower on mobile for both speakers */}
           {currentTurn && (
             <div
               className={`
                 absolute left-3 right-3 sm:left-4 sm:right-4 z-20 flex justify-center pointer-events-none
-                ${currentSpeaker === 'customer' ? 'top-10 sm:top-4' : 'top-3 sm:top-4'}
+                ${currentSpeaker === 'customer' ? 'top-16 sm:top-4' : 'top-14 sm:top-4'}
               `}
             >
               <div className="w-full max-w-[min(320px,100%)]">
@@ -120,15 +138,12 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             </div>
           )}
 
-          {/* Characters — static rule-of-thirds */}
+          {/* Characters */}
           <div className="absolute inset-0 overflow-hidden">
             {variant.characters?.map((ch) => {
               const isSpeaking = ch.id === currentSpeaker;
               const isCustomer = ch.id === 'customer';
-
               const left = isCustomer ? '33%' : '67%';
-
-              // Customer larger; staff smaller especially on mobile
               const sizeClass = isCustomer
                 ? 'w-[72%] max-w-[340px] sm:max-w-[380px] md:w-[46%] md:max-w-[480px] lg:max-w-[540px]'
                 : 'w-[42%] max-w-[180px] sm:max-w-[220px] md:w-[34%] md:max-w-[360px] lg:max-w-[400px]';
@@ -161,7 +176,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
           </div>
         </div>
 
-        {/* Prev / Next — tight spacing under the stage */}
         <div className="mt-3 sm:mt-4 w-full max-w-6xl lg:max-w-7xl flex justify-center">
           <StepControls
             current={ui.currentStep}

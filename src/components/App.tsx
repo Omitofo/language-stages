@@ -43,10 +43,24 @@ export default function App() {
     }
   }, []);
 
-  // On mobile start with sidebar closed so the stage is visible immediately
+  // On mobile start with sidebar closed (dropdown replaces it)
   useEffect(() => {
     if (window.innerWidth < 768) setSidebarOpen(false);
   }, []);
+
+  // Auto-select first stage so mobile isn't empty on load
+  useEffect(() => {
+    if (!ui && allStages.length > 0) {
+      const stage = allStages[0];
+      const language = Object.keys(stage.languages)[0];
+      setUi({
+        stageId: stage.id,
+        language,
+        variant: stage.languages[language].defaultVariant,
+        currentStep: 0,
+      });
+    }
+  }, [ui]);
 
   const toggleTheme = () => {
     const next = !dark;
@@ -67,7 +81,6 @@ export default function App() {
       variant: defaultVariant,
       currentStep: 0,
     });
-    // On mobile close sidebar after selection
     if (window.innerWidth < 768) setSidebarOpen(false);
   };
 
@@ -90,24 +103,15 @@ export default function App() {
       />
 
       <main className="flex-1 relative overflow-hidden min-w-0">
-        {/* Mobile menu button — borderless, no glass frame */}
-        {!sidebarOpen && (
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="md:hidden fixed top-3.5 left-3 z-50 p-2 rounded-lg text-[rgb(var(--fg))] hover:bg-black/5 dark:hover:bg-white/10 transition"
-            aria-label="Open menu"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        )}
-
         {currentStage && ui ? (
           <StageView
             stage={currentStage}
             ui={ui}
             onUpdateUi={updateUi}
+            levels={levels}
+            onSelectStage={selectStage}
+            dark={dark}
+            onToggleTheme={toggleTheme}
           />
         ) : (
           <div className="h-full flex items-center justify-center p-8 text-center">
@@ -116,18 +120,8 @@ export default function App() {
                 Language Stages
               </h1>
               <p className="text-[rgb(var(--muted))] text-lg">
-                Select a stage from the sidebar to begin.
+                Select a stage to begin.
               </p>
-              <p className="text-sm text-[rgb(var(--muted))]">
-                Study the same communicative situation across languages.
-              </p>
-              {/* Mobile helper when no stage selected */}
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="md:hidden mt-4 px-5 py-2.5 rounded-xl glass-strong text-sm font-medium"
-              >
-                Open stages
-              </button>
             </div>
           </div>
         )}
