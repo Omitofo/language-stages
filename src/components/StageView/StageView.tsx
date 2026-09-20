@@ -78,8 +78,9 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         </div>
       </div>
 
-      {/* Stage canvas — wide, shorter rectangular frame, pinned toward the top */}
-      <div className="flex-1 min-h-0 flex items-start justify-center pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-6 pb-8 md:pb-12">
+      {/* Stage canvas + controls below */}
+      <div className="flex-1 min-h-0 flex flex-col items-center pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-6 pb-6 md:pb-10">
+        {/* Stage frame */}
         <div
           className="
             relative w-full
@@ -89,6 +90,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             border border-white/25 dark:border-white/10
             shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]
             bg-slate-900/20
+            shrink-0
           "
         >
           {/* Background */}
@@ -101,7 +103,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
           />
 
           {/* Soft overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
           {/* Mobile speech bubble — safe centered zone under the top edge */}
           {currentTurn && (
@@ -112,27 +114,28 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             </div>
           )}
 
-          {/* Characters */}
+          {/* Characters — larger + lower for a closer, more intimate framing */}
           <div className="absolute inset-0 overflow-hidden">
             {variant.characters?.map((ch) => {
               const isSpeaking = ch.id === currentSpeaker;
               const isCustomer = ch.id === 'customer';
 
               let left = `${ch.position.x}%`;
+              // Base / speaking / idle sizes bumped up for a closer feel
               let sizeClass =
-                'w-[48%] max-w-[220px] sm:max-w-[240px] md:w-[30%] md:max-w-[300px] lg:max-w-[340px]';
+                'w-[58%] max-w-[280px] sm:max-w-[320px] md:w-[38%] md:max-w-[380px] lg:max-w-[420px]';
               let opacityClass = 'opacity-100';
               let zClass = 'z-[5]';
 
               if (isSpeaking) {
                 sizeClass =
-                  'w-[55%] max-w-[260px] sm:max-w-[270px] md:w-[32%] md:max-w-[320px] lg:max-w-[360px]';
+                  'w-[68%] max-w-[320px] sm:max-w-[360px] md:w-[42%] md:max-w-[420px] lg:max-w-[460px]';
                 zClass = 'z-[10]';
-                if (isCustomer) left = '34%';
-                else left = '66%';
+                if (isCustomer) left = '32%';
+                else left = '68%';
               } else {
                 sizeClass =
-                  'w-[36%] max-w-[160px] sm:max-w-[190px] md:w-[26%] md:max-w-[280px] lg:max-w-[320px]';
+                  'w-[48%] max-w-[220px] sm:max-w-[260px] md:w-[32%] md:max-w-[340px] lg:max-w-[380px]';
                 opacityClass = 'opacity-55 sm:opacity-75 md:opacity-100';
                 zClass = 'z-[4]';
               }
@@ -140,15 +143,16 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               return (
                 <div
                   key={ch.id}
-                  className={`absolute ${sizeClass} h-[65%] max-h-[480px] -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
+                  className={`absolute ${sizeClass} h-[78%] max-h-[560px] -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
                   style={{
                     left,
-                    top: isCustomer ? '58%' : '54%',
+                    // Push characters lower so they sit more in the foreground
+                    top: isCustomer ? '48%' : '44%',
                   }}
                 >
                   {/* Desktop bubble above speaker */}
                   {isSpeaking && currentTurn && (
-                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(260px,36vw)]">
+                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,38vw)]">
                       <Dialogue turn={currentTurn} />
                     </div>
                   )}
@@ -163,18 +167,16 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               );
             })}
           </div>
+        </div>
 
-          {/* Prev / Next — bottom of the stage container, over the scene */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-4 pt-8 pointer-events-none bg-gradient-to-t from-black/40 to-transparent">
-            <div className="pointer-events-auto flex justify-center">
-              <StepControls
-                current={ui.currentStep}
-                total={totalSteps}
-                onPrev={prev}
-                onNext={next}
-              />
-            </div>
-          </div>
+        {/* Prev / Next — below the stage container, spaced + centered */}
+        <div className="mt-5 sm:mt-6 w-full max-w-6xl lg:max-w-7xl flex justify-center">
+          <StepControls
+            current={ui.currentStep}
+            total={totalSteps}
+            onPrev={prev}
+            onNext={next}
+          />
         </div>
       </div>
     </div>
