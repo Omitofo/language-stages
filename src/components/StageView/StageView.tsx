@@ -53,7 +53,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
   return (
     <div className="h-full flex flex-col">
       {/* Top bar: language + variant */}
-      <div className="flex items-center justify-between gap-4 px-4 md:px-6 h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0">
+      <div className="flex items-center justify-between gap-4 px-4 md:px-6 h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0 z-30">
         <div className="flex items-center gap-3">
           <LanguageSwitcher
             languages={availableLanguages.map((code) => ({
@@ -79,7 +79,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         </div>
       </div>
 
-      {/* Stage area */}
+      {/* Stage area — full remaining height */}
       <div className="flex-1 relative overflow-hidden min-h-0">
         {/* Background */}
         <div
@@ -91,7 +91,23 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         />
 
         {/* Soft overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30 pointer-events-none" />
+
+        {/* Controls overlay (core phrase + prev/next) — sits on top of the scene */}
+        <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-6 pt-4 pb-3 pointer-events-none">
+          <div className="pointer-events-auto max-w-lg mx-auto space-y-3">
+            <CorePhrase
+              phrase={variant.corePhrase}
+              romanization={variant.romanization}
+            />
+            <StepControls
+              current={ui.currentStep}
+              total={totalSteps}
+              onPrev={prev}
+              onNext={next}
+            />
+          </div>
+        </div>
 
         {/* Characters + Dialogue — strong foreground layer */}
         <div className="absolute inset-0 overflow-hidden">
@@ -100,34 +116,31 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             const isCustomer = ch.id === 'customer';
 
             // --- Responsive character sizing & placement ---
-            // Mobile: speaking character larger + closer to center; non-speaking smaller + side
-            // Desktop: keep the original left/right staging from JSON
             let left = `${ch.position.x}%`;
             let sizeClass =
-              'w-[52vw] max-w-[240px] sm:w-[44vw] sm:max-w-[260px] md:w-[30vw] md:max-w-[320px] lg:max-w-[360px]';
+              'w-[50vw] max-w-[230px] sm:w-[42vw] sm:max-w-[250px] md:w-[30vw] md:max-w-[320px] lg:max-w-[360px]';
             let opacityClass = 'opacity-100';
             let zClass = 'z-[5]';
 
             if (isSpeaking) {
-              // On mobile, pull the speaker toward center and make them bigger
               sizeClass =
-                'w-[62vw] max-w-[280px] sm:w-[48vw] sm:max-w-[280px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
+                'w-[58vw] max-w-[270px] sm:w-[46vw] sm:max-w-[270px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
               zClass = 'z-[10]';
-              // Soft center bias only on the smallest screens
+              // Soft center bias on mobile so speaker owns the space
               if (isCustomer) {
-                left = '32%'; // slightly right of pure left
+                left = '34%';
               } else {
-                left = '68%'; // slightly left of pure right
+                left = '66%';
               }
             } else {
-              // Non-speaking: smaller + a bit more faded on mobile so speaker owns the space
               sizeClass =
-                'w-[40vw] max-w-[180px] sm:w-[38vw] sm:max-w-[220px] md:w-[28vw] md:max-w-[300px] lg:max-w-[340px]';
-              opacityClass = 'opacity-60 sm:opacity-80 md:opacity-100';
+                'w-[38vw] max-w-[170px] sm:w-[36vw] sm:max-w-[210px] md:w-[28vw] md:max-w-[300px] lg:max-w-[340px]';
+              opacityClass = 'opacity-55 sm:opacity-75 md:opacity-100';
               zClass = 'z-[4]';
             }
 
-            const heightClass = 'h-[78vh] max-h-[600px]';
+            // Keep characters lower so the top controls have clear space
+            const heightClass = 'h-[72vh] max-h-[560px]';
 
             return (
               <div
@@ -135,17 +148,13 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
                 className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
                 style={{
                   left,
-                  top: isCustomer ? '70%' : '66%',
+                  top: isCustomer ? '72%' : '68%',
                 }}
               >
-                {/* Speech bubble — only for the current speaker, attached above */}
+                {/* Speech bubble — constrained so it never leaves the stage on mobile */}
                 {isSpeaking && currentTurn && (
                   <div
-                    className={`
-                      absolute bottom-full mb-2 z-20
-                      w-[min(300px,86vw)]
-                      left-1/2 -translate-x-1/2
-                    `}
+                    className="absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,82vw)] max-w-[calc(100vw-2rem)]"
                   >
                     <Dialogue turn={currentTurn} />
                   </div>
@@ -161,20 +170,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             );
           })}
         </div>
-      </div>
-
-      {/* Bottom controls — extra breathing room from the edge */}
-      <div className="shrink-0 glass border-t border-[rgb(var(--glass-border))] px-4 md:px-6 pt-5 pb-7 md:pt-5 md:pb-6 space-y-3">
-        <CorePhrase
-          phrase={variant.corePhrase}
-          romanization={variant.romanization}
-        />
-        <StepControls
-          current={ui.currentStep}
-          total={totalSteps}
-          onPrev={prev}
-          onNext={next}
-        />
       </div>
     </div>
   );
