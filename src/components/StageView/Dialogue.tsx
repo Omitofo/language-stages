@@ -1,45 +1,16 @@
-import type { DialogueTurn, CharacterPlacement } from '../../types/stage';
+import type { DialogueTurn } from '../../types/stage';
 
 interface Props {
-  turns: DialogueTurn[];
-  currentStep: number;
-  characters?: CharacterPlacement[];
+  turn: DialogueTurn;
 }
 
-export default function Dialogue({ turns, currentStep, characters }: Props) {
-  // Show only the current turn (clean sequential study)
-  const turn = turns[currentStep];
-  if (!turn) return null;
-
-  const char = characters?.find((c) => c.id === turn.speaker);
-
-  // Place bubble above the speaker, with a side bias so it never covers the face.
-  // On very small screens the bubble stays more centered and higher.
-  let left = '50%';
-  let top = '18%';
-  let transform = 'translateX(-50%)';
-
-  if (char) {
-    const x = char.position.x;
-    // Prefer the inner side of the character so the bubble stays in the open center area
-    if (x < 40) {
-      // Customer (left) → bubble a bit to the right of them
-      left = `${Math.min(x + 18, 48)}%`;
-      transform = 'translateX(-20%)';
-    } else {
-      // Staff (right) → bubble a bit to the left of them
-      left = `${Math.max(x - 18, 52)}%`;
-      transform = 'translateX(-80%)';
-    }
-    // Keep the bubble in the upper third so it clears the large foreground characters
-    top = '14%';
-  }
-
+/**
+ * Pure bubble content. Positioning is handled by the parent character container
+ * so the bubble always stays attached to its speaker across all breakpoints.
+ */
+export default function Dialogue({ turn }: Props) {
   return (
-    <div
-      className="absolute max-w-[min(300px,82vw)] z-20 transition-all duration-300"
-      style={{ left, top, transform }}
-    >
+    <div className="transition-all duration-300">
       <div className="glass-strong rounded-2xl px-4 py-3 shadow-xl backdrop-blur-md">
         <div className="text-[10px] uppercase tracking-wider text-[rgb(var(--muted))] mb-1">
           {turn.speaker}
@@ -53,7 +24,7 @@ export default function Dialogue({ turns, currentStep, characters }: Props) {
           </div>
         )}
       </div>
-      {/* Small pointer */}
+      {/* Pointer aimed downward toward the character */}
       <div className="mx-auto w-3 h-3 bg-white/70 dark:bg-slate-800/80 rotate-45 -mt-1.5 border-r border-b border-white/40 dark:border-slate-600/50" />
     </div>
   );
