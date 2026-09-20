@@ -53,29 +53,28 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Top bar — compact on mobile so hamburger + switches don't feel crowded */}
-      <div className="flex items-center gap-2 sm:gap-3 pl-12 pr-3 sm:pl-14 sm:pr-4 md:px-6 h-12 sm:h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0 z-30">
-        <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1">
-          <LanguageSwitcher
-            languages={availableLanguages.map((code) => ({
-              code,
-              label: stage.languages[code].label,
+      {/* Top bar — centered controls, no separator border */}
+      <div className="relative flex items-center justify-center gap-1.5 sm:gap-3 pl-12 pr-3 sm:px-6 h-12 sm:h-14 glass !border-0 shrink-0 z-30">
+        <LanguageSwitcher
+          languages={availableLanguages.map((code) => ({
+            code,
+            label: stage.languages[code].label,
+          }))}
+          current={ui.language}
+          onChange={setLanguage}
+        />
+        {availableVariants.length > 1 && (
+          <VariantSwitcher
+            variants={availableVariants.map((id) => ({
+              id,
+              label: langData.variants[id].label,
             }))}
-            current={ui.language}
-            onChange={setLanguage}
+            current={ui.variant}
+            onChange={setVariant}
           />
-          {availableVariants.length > 1 && (
-            <VariantSwitcher
-              variants={availableVariants.map((id) => ({
-                id,
-                label: langData.variants[id].label,
-              }))}
-              current={ui.variant}
-              onChange={setVariant}
-            />
-          )}
-        </div>
-        <div className="text-xs text-[rgb(var(--muted))] hidden sm:block truncate max-w-[40%] shrink-0">
+        )}
+        {/* Title sits absolute so it doesn't offset the centered controls */}
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[rgb(var(--muted))] hidden md:block truncate max-w-[30%]">
           {stage.title.en}
         </div>
       </div>
@@ -107,9 +106,14 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
           {/* Soft overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Speech bubble — stays inside the frame with padding; pointer tracks speaker */}
+          {/* Speech bubble — inside frame; lower on mobile when customer speaks */}
           {currentTurn && (
-            <div className="absolute left-3 right-3 top-3 sm:left-4 sm:right-4 sm:top-4 z-20 flex justify-center pointer-events-none">
+            <div
+              className={`
+                absolute left-3 right-3 sm:left-4 sm:right-4 z-20 flex justify-center pointer-events-none
+                ${currentSpeaker === 'customer' ? 'top-10 sm:top-4' : 'top-3 sm:top-4'}
+              `}
+            >
               <div className="w-full max-w-[min(320px,100%)]">
                 <Dialogue turn={currentTurn} pointerOffset={pointerOffset} />
               </div>

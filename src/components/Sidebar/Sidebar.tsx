@@ -33,13 +33,13 @@ export default function Sidebar({
         className={`
           fixed md:static inset-y-0 left-0 z-40
           w-72 flex flex-col
-          glass border-r border-[rgb(var(--glass-border))]
+          glass !border-0
           transition-transform duration-300 ease-out
           ${open ? 'translate-x-0' : '-translate-x-full md:translate-x-0 md:w-16'}
         `}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between px-4 h-14 border-b border-[rgb(var(--glass-border))]">
+        {/* Header — no separator border */}
+        <div className="flex items-center justify-between px-4 h-14">
           {open && (
             <span className="font-display font-semibold tracking-tight text-sm">
               Language Stages
@@ -90,8 +90,8 @@ export default function Sidebar({
           ))}
         </nav>
 
-        {/* Footer */}
-        <div className="p-3 border-t border-[rgb(var(--glass-border))]">
+        {/* Footer — no separator border */}
+        <div className="p-3">
           <button
             onClick={onToggleTheme}
             className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-black/5 dark:hover:bg-white/5 transition"
