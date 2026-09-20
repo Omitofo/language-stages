@@ -1,0 +1,72 @@
+{
+  "id": "ask-for-water",
+  "level": "L00",
+  "title": { "en": "Ask for water" },
+  "circumstance": {
+    "en": "You are in a café, restaurant, or convenience store and want a drink of water. You want to ask for it clearly and politely."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S010-ask-for-water.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "お水をください。",
+          "romanization": "o-mizu o kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、お水をください。", "romanization": "sumimasen, o-mizu o kudasai" },
+            { "speaker": "staff", "text": "はい、少々お待ちください。", "romanization": "hai, shoushou omachi kudasai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "水ください。",
+          "romanization": "mizu kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "水ください。", "romanization": "mizu kudasai" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "De l'eau, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, de l'eau s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui, un instant." },
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

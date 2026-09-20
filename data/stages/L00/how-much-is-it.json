@@ -1,0 +1,69 @@
+{
+  "id": "how-much-is-it",
+  "level": "L00",
+  "title": { "en": "How much is it?" },
+  "circumstance": {
+    "en": "You see something you might buy in a shop, market, or café. You want to know the price before deciding."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S012-how-much-is-it.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これはいくらですか。",
+          "romanization": "kore wa ikura desu ka",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、これはいくらですか。", "romanization": "sumimasen, kore wa ikura desu ka" },
+            { "speaker": "staff", "text": "500円です。", "romanization": "gohyaku en desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これいくら？",
+          "romanization": "kore ikura?",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "これいくら？", "romanization": "kore ikura?" },
+            { "speaker": "staff", "text": "500円。", "romanization": "gohyaku en" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "C'est combien ?",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, c'est combien ?" },
+            { "speaker": "staff", "text": "Cinq euros." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

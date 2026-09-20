@@ -1,0 +1,69 @@
+{
+  "id": "where-is-the-toilet",
+  "level": "L00",
+  "title": { "en": "Where is the toilet?" },
+  "circumstance": {
+    "en": "You need to find the toilet or restroom. You want a simple, polite way to ask where it is."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S009-where-is-the-toilet.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "トイレはどこですか。",
+          "romanization": "toire wa doko desu ka",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、トイレはどこですか。", "romanization": "sumimasen, toire wa doko desu ka" },
+            { "speaker": "staff", "text": "あちらです。", "romanization": "achira desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "トイレどこ？",
+          "romanization": "toire doko?",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "トイレどこ？", "romanization": "toire doko?" },
+            { "speaker": "staff", "text": "あそこ。", "romanization": "asoko" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Où sont les toilettes ?",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, où sont les toilettes ?" },
+            { "speaker": "staff", "text": "Au fond, à droite." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

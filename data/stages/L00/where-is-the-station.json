@@ -1,0 +1,69 @@
+{
+  "id": "where-is-the-station",
+  "level": "L00",
+  "title": { "en": "Where is the station?" },
+  "circumstance": {
+    "en": "You need to find the train or subway station. You want a simple, polite way to ask where it is."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S013-where-is-the-station.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "駅はどこですか。",
+          "romanization": "eki wa doko desu ka",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、駅はどこですか。", "romanization": "sumimasen, eki wa doko desu ka" },
+            { "speaker": "staff", "text": "まっすぐ行って、左です。", "romanization": "massugu itte, hidari desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "駅どこ？",
+          "romanization": "eki doko?",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "駅どこ？", "romanization": "eki doko?" },
+            { "speaker": "staff", "text": "まっすぐ行って左。", "romanization": "massugu itte hidari" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Où est la gare ?",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, où est la gare ?" },
+            { "speaker": "staff", "text": "Tout droit, puis à gauche." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
