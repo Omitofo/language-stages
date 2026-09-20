@@ -36,7 +36,7 @@ export default function StageDropdown({
   const label = activeTitle || 'Select a stage';
 
   return (
-    <div ref={rootRef} className="md:hidden relative w-full px-3 pt-2 pb-1 z-40">
+    <div ref={rootRef} className="md:hidden relative w-full px-3 pt-4 pb-1 z-40">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
