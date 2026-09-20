@@ -92,17 +92,19 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
 
         {/* Characters + Dialogue */}
         <div className="absolute inset-0">
-          {/* Character placeholders (will be real PNGs later) */}
+          {/* Characters (real PNG assets) */}
           {variant.characters?.map((ch) => (
             <div
               key={ch.id}
-              className="absolute w-28 md:w-40 h-40 md:h-56 -translate-x-1/2 -translate-y-1/2"
+              className="absolute w-28 md:w-40 h-40 md:h-56 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
               style={{ left: `${ch.position.x}%`, top: `${ch.position.y}%` }}
             >
-              {/* Placeholder silhouette until real assets */}
-              <div className="w-full h-full rounded-2xl bg-slate-700/40 border border-white/10 flex items-end justify-center pb-2">
-                <span className="text-[10px] text-white/60 uppercase tracking-wider">{ch.id}</span>
-              </div>
+              <img
+                src={ch.src}
+                alt={ch.id}
+                className="w-full h-full object-contain drop-shadow-lg select-none"
+                draggable={false}
+              />
             </div>
           ))}
 
