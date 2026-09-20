@@ -61,12 +61,11 @@ export default function StageView({
 
   const currentTurn = variant.dialogue[ui.currentStep];
   const currentSpeaker = currentTurn?.speaker;
-  const pointerOffset = currentSpeaker === 'customer' ? 28 : 72;
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header — taller, centered controls, theme icon on the right */}
-      <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 sm:h-16 glass !border-0 shrink-0 z-30">
+      {/* Header — centered controls, theme icon on the right */}
+      <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 md:h-12 glass !border-0 shrink-0 z-30">
         <LanguageSwitcher
           languages={availableLanguages.map((code) => ({
             code,
@@ -129,16 +128,27 @@ export default function StageView({
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Speech bubble — lower on mobile for both speakers */}
+          {/* Speech bubble
+              Mobile: centered, lower
+              Tablet/desktop: different vertical levels + horizontal lean toward speaker */}
           {currentTurn && (
             <div
               className={`
-                absolute left-3 right-3 sm:left-4 sm:right-4 z-20 flex justify-center pointer-events-none
-                ${currentSpeaker === 'customer' ? 'top-16 sm:top-4' : 'top-14 sm:top-4'}
+                absolute z-20 pointer-events-none
+                left-3 right-3
+                md:left-auto md:right-auto md:w-[min(300px,36%)]
+                ${
+                  currentSpeaker === 'customer'
+                    ? 'top-16 md:top-3 md:left-[8%]'
+                    : 'top-14 md:top-16 md:left-[58%]'
+                }
               `}
             >
-              <div className="w-full max-w-[min(320px,100%)]">
-                <Dialogue turn={currentTurn} pointerOffset={pointerOffset} />
+              <div className="w-full max-w-[min(320px,100%)] md:max-w-none mx-auto md:mx-0">
+                <Dialogue
+                  turn={currentTurn}
+                  pointerOffset={currentSpeaker === 'customer' ? 35 : 65}
+                />
               </div>
             </div>
           )}
