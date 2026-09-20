@@ -43,6 +43,11 @@ export default function App() {
     }
   }, []);
 
+  // On mobile start with sidebar closed so the stage is visible immediately
+  useEffect(() => {
+    if (window.innerWidth < 768) setSidebarOpen(false);
+  }, []);
+
   const toggleTheme = () => {
     const next = !dark;
     setDark(next);
@@ -73,7 +78,7 @@ export default function App() {
   const currentStage = ui ? allStages.find((s) => s.id === ui.stageId) || null : null;
 
   return (
-    <div className="flex h-full w-full">
+    <div className="flex h-full w-full relative">
       <Sidebar
         levels={levels}
         activeStageId={ui?.stageId ?? null}
@@ -84,7 +89,20 @@ export default function App() {
         onToggleTheme={toggleTheme}
       />
 
-      <main className="flex-1 relative overflow-hidden">
+      <main className="flex-1 relative overflow-hidden min-w-0">
+        {/* Mobile menu button — always available when sidebar is closed */}
+        {!sidebarOpen && (
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="md:hidden fixed top-3 left-3 z-50 p-2.5 rounded-xl glass-strong shadow-lg"
+            aria-label="Open menu"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        )}
+
         {currentStage && ui ? (
           <StageView
             stage={currentStage}
@@ -103,6 +121,13 @@ export default function App() {
               <p className="text-sm text-[rgb(var(--muted))]">
                 Study the same communicative situation across languages.
               </p>
+              {/* Mobile helper when no stage selected */}
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="md:hidden mt-4 px-5 py-2.5 rounded-xl glass-strong text-sm font-medium"
+              >
+                Open stages
+              </button>
             </div>
           </div>
         )}
