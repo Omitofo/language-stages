@@ -78,12 +78,13 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         </div>
       </div>
 
-      {/* Stage canvas — constrained container with glossy border, not full-bleed */}
-      <div className="flex-1 min-h-0 flex items-center justify-center p-3 sm:p-4 md:p-6">
+      {/* Stage canvas — wide, shorter rectangular frame, pinned toward the top */}
+      <div className="flex-1 min-h-0 flex items-start justify-center pt-3 sm:pt-4 md:pt-5 px-3 sm:px-4 md:px-6 pb-8 md:pb-12">
         <div
           className="
-            relative w-full h-full
-            max-w-5xl max-h-[780px]
+            relative w-full
+            max-w-6xl lg:max-w-7xl
+            h-[min(52vh,480px)] sm:h-[min(56vh,520px)] md:h-[min(58vh,560px)]
             rounded-2xl overflow-hidden
             border border-white/25 dark:border-white/10
             shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]
