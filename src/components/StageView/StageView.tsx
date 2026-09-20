@@ -80,7 +80,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
       </div>
 
       {/* Stage area */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative overflow-hidden min-h-0">
         {/* Background */}
         <div
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
@@ -91,7 +91,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         />
 
         {/* Soft overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/25 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 pointer-events-none" />
 
         {/* Characters + Dialogue — strong foreground layer */}
         <div className="absolute inset-0 overflow-hidden">
@@ -99,31 +99,52 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             const isSpeaking = ch.id === currentSpeaker;
             const isCustomer = ch.id === 'customer';
 
-            // Horizontal placement from JSON, vertical forced low so legs clip under viewport
-            // Bigger on mobile so they feel close; slightly more restrained on large screens
-            const sizeClass =
-              'w-[55vw] max-w-[260px] sm:w-[48vw] sm:max-w-[280px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
-            // Tall container so only upper ~55-60% of the character is visible
-            const heightClass = 'h-[85vh] max-h-[640px]';
+            // --- Responsive character sizing & placement ---
+            // Mobile: speaking character larger + closer to center; non-speaking smaller + side
+            // Desktop: keep the original left/right staging from JSON
+            let left = `${ch.position.x}%`;
+            let sizeClass =
+              'w-[52vw] max-w-[240px] sm:w-[44vw] sm:max-w-[260px] md:w-[30vw] md:max-w-[320px] lg:max-w-[360px]';
+            let opacityClass = 'opacity-100';
+            let zClass = 'z-[5]';
+
+            if (isSpeaking) {
+              // On mobile, pull the speaker toward center and make them bigger
+              sizeClass =
+                'w-[62vw] max-w-[280px] sm:w-[48vw] sm:max-w-[280px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
+              zClass = 'z-[10]';
+              // Soft center bias only on the smallest screens
+              if (isCustomer) {
+                left = '32%'; // slightly right of pure left
+              } else {
+                left = '68%'; // slightly left of pure right
+              }
+            } else {
+              // Non-speaking: smaller + a bit more faded on mobile so speaker owns the space
+              sizeClass =
+                'w-[40vw] max-w-[180px] sm:w-[38vw] sm:max-w-[220px] md:w-[28vw] md:max-w-[300px] lg:max-w-[340px]';
+              opacityClass = 'opacity-60 sm:opacity-80 md:opacity-100';
+              zClass = 'z-[4]';
+            }
+
+            const heightClass = 'h-[78vh] max-h-[600px]';
 
             return (
               <div
                 key={ch.id}
-                className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none z-[5] transition-all duration-300`}
+                className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
                 style={{
-                  left: `${ch.position.x}%`,
-                  // Push further down so more of the body is clipped
-                  top: isCustomer ? '68%' : '64%',
+                  left,
+                  top: isCustomer ? '70%' : '66%',
                 }}
               >
-                {/* Speech bubble — rendered relative to this character so it always stays attached */}
+                {/* Speech bubble — only for the current speaker, attached above */}
                 {isSpeaking && currentTurn && (
                   <div
                     className={`
-                      absolute bottom-full mb-3 z-20
-                      w-max max-w-[min(280px,78vw)]
+                      absolute bottom-full mb-2 z-20
+                      w-[min(300px,86vw)]
                       left-1/2 -translate-x-1/2
-                      ${isCustomer ? 'sm:left-[60%] sm:-translate-x-1/3' : 'sm:left-[40%] sm:-translate-x-2/3'}
                     `}
                   >
                     <Dialogue turn={currentTurn} />
@@ -142,8 +163,8 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
         </div>
       </div>
 
-      {/* Bottom controls */}
-      <div className="shrink-0 glass border-t border-[rgb(var(--glass-border))] px-4 md:px-6 py-4 space-y-3">
+      {/* Bottom controls — extra breathing room from the edge */}
+      <div className="shrink-0 glass border-t border-[rgb(var(--glass-border))] px-4 md:px-6 pt-5 pb-7 md:pt-5 md:pb-6 space-y-3">
         <CorePhrase
           phrase={variant.corePhrase}
           romanization={variant.romanization}
