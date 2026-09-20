@@ -2,7 +2,6 @@ import type { Stage, StageUIState } from '../../types/stage';
 import LanguageSwitcher from '../LanguageSwitcher';
 import VariantSwitcher from '../VariantSwitcher';
 import StepControls from './StepControls';
-import CorePhrase from './CorePhrase';
 import Dialogue from './Dialogue';
 
 interface Props {
@@ -52,7 +51,7 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Top bar: language + variant — pl-14 on mobile so hamburger doesn't overlap */}
+      {/* Top bar: language + variant only */}
       <div className="flex items-center justify-between gap-4 pl-14 pr-4 md:px-6 h-14 border-b border-[rgb(var(--glass-border))] glass shrink-0 z-30">
         <div className="flex items-center gap-3">
           <LanguageSwitcher
@@ -74,33 +73,99 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
             />
           )}
         </div>
-        <div className="text-xs text-[rgb(var(--muted))] hidden sm:block">
+        <div className="text-xs text-[rgb(var(--muted))] hidden sm:block truncate max-w-[40%]">
           {stage.title.en}
         </div>
       </div>
 
-      {/* Stage area — full remaining height */}
-      <div className="flex-1 relative overflow-hidden min-h-0">
-        {/* Background */}
+      {/* Stage canvas — constrained container with glossy border, not full-bleed */}
+      <div className="flex-1 min-h-0 flex items-center justify-center p-3 sm:p-4 md:p-6">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-          style={{
-            backgroundImage: `url(${variant.background})`,
-            backgroundColor: '#1e293b',
-          }}
-        />
+          className="
+            relative w-full h-full
+            max-w-5xl max-h-[780px]
+            rounded-2xl overflow-hidden
+            border border-white/25 dark:border-white/10
+            shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]
+            bg-slate-900/20
+          "
+        >
+          {/* Background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${variant.background})`,
+              backgroundColor: '#1e293b',
+            }}
+          />
 
-        {/* Soft overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30 pointer-events-none" />
+          {/* Soft overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Controls overlay — glass card for contrast */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-3 md:px-6 pt-3 pb-2 pointer-events-none">
-          <div className="pointer-events-auto max-w-lg mx-auto">
-            <div className="glass-strong rounded-2xl px-4 py-3 md:px-5 md:py-4 shadow-xl space-y-3 border border-white/10">
-              <CorePhrase
-                phrase={variant.corePhrase}
-                romanization={variant.romanization}
-              />
+          {/* Mobile speech bubble — safe centered zone under the top edge */}
+          {currentTurn && (
+            <div className="md:hidden absolute left-3 right-3 top-3 z-20 flex justify-center pointer-events-none">
+              <div className="w-full max-w-[min(300px,100%)]">
+                <Dialogue turn={currentTurn} />
+              </div>
+            </div>
+          )}
+
+          {/* Characters */}
+          <div className="absolute inset-0 overflow-hidden">
+            {variant.characters?.map((ch) => {
+              const isSpeaking = ch.id === currentSpeaker;
+              const isCustomer = ch.id === 'customer';
+
+              let left = `${ch.position.x}%`;
+              let sizeClass =
+                'w-[48%] max-w-[220px] sm:max-w-[240px] md:w-[30%] md:max-w-[300px] lg:max-w-[340px]';
+              let opacityClass = 'opacity-100';
+              let zClass = 'z-[5]';
+
+              if (isSpeaking) {
+                sizeClass =
+                  'w-[55%] max-w-[260px] sm:max-w-[270px] md:w-[32%] md:max-w-[320px] lg:max-w-[360px]';
+                zClass = 'z-[10]';
+                if (isCustomer) left = '34%';
+                else left = '66%';
+              } else {
+                sizeClass =
+                  'w-[36%] max-w-[160px] sm:max-w-[190px] md:w-[26%] md:max-w-[280px] lg:max-w-[320px]';
+                opacityClass = 'opacity-55 sm:opacity-75 md:opacity-100';
+                zClass = 'z-[4]';
+              }
+
+              return (
+                <div
+                  key={ch.id}
+                  className={`absolute ${sizeClass} h-[65%] max-h-[480px] -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
+                  style={{
+                    left,
+                    top: isCustomer ? '58%' : '54%',
+                  }}
+                >
+                  {/* Desktop bubble above speaker */}
+                  {isSpeaking && currentTurn && (
+                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(260px,36vw)]">
+                      <Dialogue turn={currentTurn} />
+                    </div>
+                  )}
+
+                  <img
+                    src={ch.src}
+                    alt={ch.id}
+                    className="w-full h-full object-contain object-top drop-shadow-2xl select-none"
+                    draggable={false}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Prev / Next — bottom of the stage container, over the scene */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-4 pt-8 pointer-events-none bg-gradient-to-t from-black/40 to-transparent">
+            <div className="pointer-events-auto flex justify-center">
               <StepControls
                 current={ui.currentStep}
                 total={totalSteps}
@@ -109,72 +174,6 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
               />
             </div>
           </div>
-        </div>
-
-        {/* Mobile: centered speech bubble in a safe zone (avoids going off-frame) */}
-        {currentTurn && (
-          <div className="md:hidden absolute left-3 right-3 top-[7.5rem] z-20 flex justify-center pointer-events-none">
-            <div className="w-full max-w-[min(300px,100%)]">
-              <Dialogue turn={currentTurn} />
-            </div>
-          </div>
-        )}
-
-        {/* Characters + desktop speech bubbles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {variant.characters?.map((ch) => {
-            const isSpeaking = ch.id === currentSpeaker;
-            const isCustomer = ch.id === 'customer';
-
-            let left = `${ch.position.x}%`;
-            let sizeClass =
-              'w-[50vw] max-w-[230px] sm:w-[42vw] sm:max-w-[250px] md:w-[30vw] md:max-w-[320px] lg:max-w-[360px]';
-            let opacityClass = 'opacity-100';
-            let zClass = 'z-[5]';
-
-            if (isSpeaking) {
-              sizeClass =
-                'w-[58vw] max-w-[270px] sm:w-[46vw] sm:max-w-[270px] md:w-[32vw] md:max-w-[340px] lg:max-w-[380px]';
-              zClass = 'z-[10]';
-              if (isCustomer) {
-                left = '34%';
-              } else {
-                left = '66%';
-              }
-            } else {
-              sizeClass =
-                'w-[38vw] max-w-[170px] sm:w-[36vw] sm:max-w-[210px] md:w-[28vw] md:max-w-[300px] lg:max-w-[340px]';
-              opacityClass = 'opacity-55 sm:opacity-75 md:opacity-100';
-              zClass = 'z-[4]';
-            }
-
-            const heightClass = 'h-[70vh] max-h-[540px]';
-
-            return (
-              <div
-                key={ch.id}
-                className={`absolute ${sizeClass} ${heightClass} -translate-x-1/2 pointer-events-none ${zClass} ${opacityClass} transition-all duration-400 ease-out`}
-                style={{
-                  left,
-                  top: isCustomer ? '74%' : '70%',
-                }}
-              >
-                {/* Desktop only: bubble attached above the character */}
-                {isSpeaking && currentTurn && (
-                  <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(280px,40vw)]">
-                    <Dialogue turn={currentTurn} />
-                  </div>
-                )}
-
-                <img
-                  src={ch.src}
-                  alt={ch.id}
-                  className="w-full h-full object-contain object-top drop-shadow-2xl select-none"
-                  draggable={false}
-                />
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>
