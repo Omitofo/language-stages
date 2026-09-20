@@ -1,0 +1,72 @@
+{
+  "id": "i-dont-understand",
+  "level": "L00",
+  "title": { "en": "I don't understand" },
+  "circumstance": {
+    "en": "Someone is speaking to you and you did not understand. You need a simple way to signal that and ask for help."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S002-basic-repair.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "すみません、わかりません。",
+          "romanization": "sumimasen, wakarimasen",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "ご注文はお決まりですか。", "romanization": "go-chuumon wa okimari desu ka" },
+            { "speaker": "customer", "text": "すみません、わかりません。", "romanization": "sumimasen, wakarimasen" },
+            { "speaker": "staff", "text": "メニューはこちらです。", "romanization": "menyuu wa kochira desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "わからない。",
+          "romanization": "wakaranai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "注文決まった？", "romanization": "chuumon kimatta?" },
+            { "speaker": "customer", "text": "わからない。", "romanization": "wakaranai" },
+            { "speaker": "staff", "text": "メニューここ。", "romanization": "menyuu koko" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Je ne comprends pas.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "Vous avez choisi ?" },
+            { "speaker": "customer", "text": "Pardon, je ne comprends pas." },
+            { "speaker": "staff", "text": "Voici le menu." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "this-one-please",
+  "level": "L00",
+  "title": { "en": "This one, please" },
+  "circumstance": {
+    "en": "You are in a shop, café, or convenience store and want to ask for an object by pointing."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S001-basic-request.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これください。",
+          "romanization": "kore kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、これください。", "romanization": "sumimasen, kore kudasai" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これ。",
+          "romanization": "kore",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "これ。", "romanization": "kore" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Celui-ci, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Celui-ci, s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui." },
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

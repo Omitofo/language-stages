@@ -1,0 +1,71 @@
+{
+  "id": "one-please",
+  "level": "L00",
+  "title": { "en": "One, please" },
+  "circumstance": {
+    "en": "You are in a shop, café, or restaurant and want one of something (or a small number). You want a simple way to say the quantity."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S014-one-please.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "一つください。",
+          "romanization": "hitotsu kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、一つください。", "romanization": "sumimasen, hitotsu kudasai" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "一つ。",
+          "romanization": "hitotsu",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "一つ。", "romanization": "hitotsu" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Un, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Un, s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui." },
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

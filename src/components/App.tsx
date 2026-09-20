@@ -6,10 +6,23 @@ import StageView from './StageView/StageView';
 
 // Import all stages at build time (static)
 import askForTheBill from '../../data/stages/L00/ask-for-the-bill.json';
+import whereIsTheToilet from '../../data/stages/L00/where-is-the-toilet.json';
+import askForWater from '../../data/stages/L00/ask-for-water.json';
+import howMuchIsIt from '../../data/stages/L00/how-much-is-it.json';
+import whereIsTheStation from '../../data/stages/L00/where-is-the-station.json';
+import onePlease from '../../data/stages/L00/one-please.json';
+import thisOnePlease from '../../data/stages/L00/this-one-please.json';
+import iDontUnderstand from '../../data/stages/L00/i-dont-understand.json';
 
 const allStages: Stage[] = [
+  thisOnePlease as Stage,
+  iDontUnderstand as Stage,
+  whereIsTheToilet as Stage,
+  askForWater as Stage,
   askForTheBill as Stage,
-  // Add more stages here as they are created
+  howMuchIsIt as Stage,
+  whereIsTheStation as Stage,
+  onePlease as Stage,
 ];
 
 function groupByLevel(stages: Stage[]): LevelGroup[] {
