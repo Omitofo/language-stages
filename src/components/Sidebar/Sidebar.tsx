@@ -17,8 +17,6 @@ export default function Sidebar({
   onSelect,
   open,
   onToggle,
-  dark,
-  onToggleTheme,
 }: Props) {
   return (
     <aside
@@ -81,15 +79,7 @@ export default function Sidebar({
         ))}
       </nav>
 
-      <div className="p-3">
-        <button
-          onClick={onToggleTheme}
-          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-black/5 dark:hover:bg-white/5 transition"
-        >
-          {dark ? '☀️' : '🌙'}
-          {open && <span>{dark ? 'Light' : 'Dark'}</span>}
-        </button>
-      </div>
+      {/* Theme lives in the main header as an icon; no footer control needed */}
     </aside>
   );
 }

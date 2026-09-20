@@ -65,7 +65,7 @@ export default function StageView({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header — taller, centered, bigger buttons */}
+      {/* Header — taller, centered controls, theme icon on the right */}
       <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 sm:h-16 glass !border-0 shrink-0 z-30">
         <LanguageSwitcher
           languages={availableLanguages.map((code) => ({
@@ -85,9 +85,16 @@ export default function StageView({
             onChange={setVariant}
           />
         )}
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[rgb(var(--muted))] hidden md:block truncate max-w-[30%]">
-          {stage.title.en}
-        </div>
+        {/* Theme toggle — icon only, right side */}
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg text-lg leading-none hover:bg-black/5 dark:hover:bg-white/10 transition"
+          aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={dark ? 'Light mode' : 'Dark mode'}
+        >
+          {dark ? '☀️' : '🌙'}
+        </button>
       </div>
 
       {/* Mobile stage dropdown — below header, above stage image */}
@@ -96,8 +103,6 @@ export default function StageView({
         activeStageId={ui.stageId}
         activeTitle={stage.title.en}
         onSelect={onSelectStage}
-        dark={dark}
-        onToggleTheme={onToggleTheme}
       />
 
       {/* Stage + controls */}

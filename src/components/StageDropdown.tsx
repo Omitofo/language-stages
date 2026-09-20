@@ -6,8 +6,6 @@ interface Props {
   activeStageId: string | null;
   activeTitle?: string;
   onSelect: (stageId: string) => void;
-  dark: boolean;
-  onToggleTheme: () => void;
 }
 
 /**
@@ -19,8 +17,6 @@ export default function StageDropdown({
   activeStageId,
   activeTitle,
   onSelect,
-  dark,
-  onToggleTheme,
 }: Props) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -104,18 +100,6 @@ export default function StageDropdown({
               })}
             </div>
           ))}
-
-          <div className="mt-1 pt-1 px-2">
-            <button
-              type="button"
-              onClick={() => {
-                onToggleTheme();
-              }}
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-black/5 dark:hover:bg-white/5 transition text-[rgb(var(--muted))]"
-            >
-              {dark ? '☀️ Light mode' : '🌙 Dark mode'}
-            </button>
-          </div>
         </div>
       )}
     </div>
