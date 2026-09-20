@@ -105,48 +105,46 @@ export default function StageView({ stage, ui, onUpdateUi }: Props) {
           {/* Soft overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Mobile speech bubble — safe centered zone under the top edge */}
-          {currentTurn && (
-            <div className="md:hidden absolute left-3 right-3 top-3 z-20 flex justify-center pointer-events-none">
-              <div className="w-full max-w-[min(300px,100%)]">
-                <Dialogue turn={currentTurn} />
-              </div>
-            </div>
-          )}
-
-          {/* Characters — static rule-of-thirds positions; only dialogue text changes */}
+          {/* Characters — static rule-of-thirds; bubble tracks the active speaker */}
           <div className="absolute inset-0 overflow-hidden">
             {variant.characters?.map((ch) => {
               const isSpeaking = ch.id === currentSpeaker;
               const isCustomer = ch.id === 'customer';
 
-              // Rule of thirds: left third ~33%, right third ~67%
+              // Rule of thirds
               const left = isCustomer ? '33%' : '67%';
+
+              // Customer (male) larger; staff (female) smaller especially on mobile
+              const sizeClass = isCustomer
+                ? 'w-[72%] max-w-[340px] sm:max-w-[380px] md:w-[46%] md:max-w-[480px] lg:max-w-[540px]'
+                : 'w-[42%] max-w-[180px] sm:max-w-[220px] md:w-[34%] md:max-w-[360px] lg:max-w-[400px]';
 
               return (
                 <div
                   key={ch.id}
-                  className="
-                    absolute
-                    w-[62%] max-w-[300px]
-                    sm:max-w-[340px]
-                    md:w-[40%] md:max-w-[420px]
-                    lg:max-w-[480px]
-                    h-[90%] max-h-[620px]
+                  className={`
+                    absolute ${sizeClass}
+                    h-[92%] max-h-[640px]
                     -translate-x-1/2
                     pointer-events-none
-                    z-[5]
                     transition-opacity duration-300
-                  "
+                    ${isSpeaking ? 'z-[10] opacity-100' : 'z-[5] opacity-70 md:opacity-90'}
+                  `}
                   style={{
                     left,
-                    // Low in the frame for a closer feel
-                    top: isCustomer ? '36%' : '32%',
+                    // Lower in the frame
+                    top: isCustomer ? '42%' : '40%',
                   }}
                 >
-                  {/* Desktop bubble above the speaking character */}
+                  {/* Speech bubble above the speaking character (all breakpoints) */}
                   {isSpeaking && currentTurn && (
-                    <div className="hidden md:block absolute bottom-full mb-2 z-20 left-1/2 -translate-x-1/2 w-[min(300px,40vw)]">
+                    <div
+                      className={`
+                        absolute bottom-full mb-2 z-20
+                        left-1/2 -translate-x-1/2
+                        w-[min(280px,72vw)] md:w-[min(300px,40vw)]
+                      `}
+                    >
                       <Dialogue turn={currentTurn} />
                     </div>
                   )}
