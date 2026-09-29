@@ -1,0 +1,69 @@
+{
+  "id": "where-is-it",
+  "level": "L00",
+  "title": { "en": "Where is it?" },
+  "circumstance": {
+    "en": "You need to find something and want a simple way to ask where it is while pointing or referring to it."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S007-where-is-it.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これはどこですか。",
+          "romanization": "kore wa doko desu ka",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、これはどこですか。", "romanization": "sumimasen, kore wa doko desu ka" },
+            { "speaker": "staff", "text": "あちらです。", "romanization": "achira desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "これどこ？",
+          "romanization": "kore doko?",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "これどこ？", "romanization": "kore doko?" },
+            { "speaker": "staff", "text": "あそこ。", "romanization": "asoko" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "C'est où ?",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Pardon, c'est où ?" },
+            { "speaker": "staff", "text": "Par là." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
