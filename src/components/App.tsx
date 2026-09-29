@@ -65,7 +65,6 @@ function resolveLanguage(stage: Stage, preferred: string | null): string {
 export default function App() {
   const [levels] = useState(() => groupByLevel(allStages));
   const [ui, setUi] = useState<StageUIState | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [dark, setDark] = useState(false);
   // Global language preference (survives stage switches)
   const [preferredLanguage, setPreferredLanguage] = useState<string | null>(null);
@@ -79,11 +78,6 @@ export default function App() {
     }
     const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
     if (savedLang) setPreferredLanguage(savedLang);
-  }, []);
-
-  // On mobile start with sidebar closed (dropdown replaces it)
-  useEffect(() => {
-    if (window.innerWidth < 768) setSidebarOpen(false);
   }, []);
 
   // Auto-select first stage so mobile isn't empty on load
@@ -110,7 +104,6 @@ export default function App() {
   const selectStage = (stageId: string) => {
     const stage = allStages.find((s) => s.id === stageId);
     if (!stage) return;
-    // Prefer the global language if this stage has it
     const language = resolveLanguage(stage, preferredLanguage ?? ui?.language ?? null);
     const defaultVariant = stage.languages[language].defaultVariant;
     setUi({
@@ -119,14 +112,12 @@ export default function App() {
       variant: defaultVariant,
       currentStep: 0,
     });
-    if (window.innerWidth < 768) setSidebarOpen(false);
   };
 
   const updateUi = (partial: Partial<StageUIState>) => {
     setUi((prev) => {
       if (!prev) return prev;
       const next = { ...prev, ...partial };
-      // When language changes, treat it as the new global preference
       if (partial.language && partial.language !== prev.language) {
         setPreferredLanguage(partial.language);
         localStorage.setItem(LANG_STORAGE_KEY, partial.language);
@@ -143,10 +134,6 @@ export default function App() {
         levels={levels}
         activeStageId={ui?.stageId ?? null}
         onSelect={selectStage}
-        open={sidebarOpen}
-        onToggle={() => setSidebarOpen((o) => !o)}
-        dark={dark}
-        onToggleTheme={toggleTheme}
       />
 
       <main className="flex-1 relative overflow-hidden min-w-0">
