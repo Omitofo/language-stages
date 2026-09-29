@@ -1,0 +1,71 @@
+{
+  "id": "two-please",
+  "level": "L00",
+  "title": { "en": "Two, please" },
+  "circumstance": {
+    "en": "You are ordering or buying and need two of something. You want a simple way to say the quantity."
+  },
+  "status": "ready",
+  "sourceInspiration": "extension from japanese-learning-garden S014 (more counters)",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "二つください。",
+          "romanization": "futatsu kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、二つください。", "romanization": "sumimasen, futatsu kudasai" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "二つ。",
+          "romanization": "futatsu",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "二つ。", "romanization": "futatsu" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1522093009533-cddfcbf59dca?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Deux, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Deux, s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui." },
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

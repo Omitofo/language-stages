@@ -1,0 +1,72 @@
+{
+  "id": "ask-for-tea",
+  "level": "L00",
+  "title": { "en": "Ask for tea" },
+  "circumstance": {
+    "en": "You are in a café or restaurant and want tea. You want to ask for it clearly and politely."
+  },
+  "status": "ready",
+  "sourceInspiration": "extension from japanese-learning-garden open gaps (concrete nouns)",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1554797581-54a1bb483257?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "お茶をください。",
+          "romanization": "o-cha o kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、お茶をください。", "romanization": "sumimasen, o-cha o kudasai" },
+            { "speaker": "staff", "text": "はい、少々お待ちください。", "romanization": "hai, shoushou omachi kudasai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1554797581-54a1bb483257?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "お茶ください。",
+          "romanization": "ocha kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "お茶ください。", "romanization": "ocha kudasai" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Un thé, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, un thé s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui, un instant." },
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

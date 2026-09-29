@@ -1,0 +1,69 @@
+{
+  "id": "i-want-this",
+  "level": "L01",
+  "title": { "en": "I want this" },
+  "circumstance": {
+    "en": "You see something you want and need a simple way to say you want it (not only point and request)."
+  },
+  "status": "ready",
+  "sourceInspiration": "L01 basic action — say what I want (from japanese-learning-garden backlog)",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1605706903348-31b6c2e0c0c0?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "これが欲しいです。",
+          "romanization": "kore ga hoshii desu",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、これが欲しいです。", "romanization": "sumimasen, kore ga hoshii desu" },
+            { "speaker": "staff", "text": "はい、どうぞ。", "romanization": "hai, douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1605706903348-31b6c2e0c0c0?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "これ欲しい。",
+          "romanization": "kore hoshii",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "これ欲しい。", "romanization": "kore hoshii" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Je voudrais celui-ci.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Je voudrais celui-ci, s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui, voilà." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}

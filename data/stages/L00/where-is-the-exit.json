@@ -1,0 +1,69 @@
+{
+  "id": "where-is-the-exit",
+  "level": "L00",
+  "title": { "en": "Where is the exit?" },
+  "circumstance": {
+    "en": "You need to leave a station, mall, or large building. You want a simple way to ask where the exit is."
+  },
+  "status": "ready",
+  "sourceInspiration": "extension from japanese-learning-garden open gaps (location nouns)",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1536095866978-aeafaaee468b?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "出口はどこですか。",
+          "romanization": "deguchi wa doko desu ka",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "すみません、出口はどこですか。", "romanization": "sumimasen, deguchi wa doko desu ka" },
+            { "speaker": "staff", "text": "まっすぐ行って、右です。", "romanization": "massugu itte, migi desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1536095866978-aeafaaee468b?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "出口どこ？",
+          "romanization": "deguchi doko?",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "出口どこ？", "romanization": "deguchi doko?" },
+            { "speaker": "staff", "text": "まっすぐ行って右。", "romanization": "massugu itte migi" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Où est la sortie ?",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "customer", "text": "Excusez-moi, où est la sortie ?" },
+            { "speaker": "staff", "text": "Tout droit, puis à droite." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
