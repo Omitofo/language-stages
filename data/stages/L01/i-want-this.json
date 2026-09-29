@@ -14,7 +14,7 @@
       "variants": {
         "polite": {
           "label": "Polite",
-          "background": "https://images.unsplash.com/photo-1605706903348-31b6c2e0c0c0?w=1600&q=80&auto=format&fit=crop",
+          "background": "https://images.unsplash.com/photo-1528164344705-47542687000d?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "これが欲しいです。",
           "romanization": "kore ga hoshii desu",
           "characters": [
@@ -29,7 +29,7 @@
         },
         "casual": {
           "label": "Casual",
-          "background": "https://images.unsplash.com/photo-1605706903348-31b6c2e0c0c0?w=1600&q=80&auto=format&fit=crop",
+          "background": "https://images.unsplash.com/photo-1528164344705-47542687000d?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "これ欲しい。",
           "romanization": "kore hoshii",
           "characters": [
@@ -50,7 +50,7 @@
       "variants": {
         "standard": {
           "label": "Standard",
-          "background": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop",
+          "background": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "Je voudrais celui-ci.",
           "romanization": null,
           "characters": [
