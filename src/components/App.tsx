@@ -37,6 +37,8 @@ const allStages: Stage[] = [
   thankYou as Stage,
 ];
 
+const LANG_STORAGE_KEY = 'ls-language';
+
 function groupByLevel(stages: Stage[]): LevelGroup[] {
   const map = new Map<string, Stage[]>();
   for (const s of stages) {
@@ -53,19 +55,30 @@ function groupByLevel(stages: Stage[]): LevelGroup[] {
     }));
 }
 
+/** Pick language for a stage: prefer global preference if available, else first key. */
+function resolveLanguage(stage: Stage, preferred: string | null): string {
+  const keys = Object.keys(stage.languages);
+  if (preferred && keys.includes(preferred)) return preferred;
+  return keys[0];
+}
+
 export default function App() {
   const [levels] = useState(() => groupByLevel(allStages));
   const [ui, setUi] = useState<StageUIState | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [dark, setDark] = useState(false);
+  // Global language preference (survives stage switches)
+  const [preferredLanguage, setPreferredLanguage] = useState<string | null>(null);
 
-  // Restore theme preference
+  // Restore theme + preferred language
   useEffect(() => {
-    const saved = localStorage.getItem('ls-theme');
-    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    const savedTheme = localStorage.getItem('ls-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setDark(true);
       document.documentElement.classList.add('dark');
     }
+    const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+    if (savedLang) setPreferredLanguage(savedLang);
   }, []);
 
   // On mobile start with sidebar closed (dropdown replaces it)
@@ -77,7 +90,7 @@ export default function App() {
   useEffect(() => {
     if (!ui && allStages.length > 0) {
       const stage = allStages[0];
-      const language = Object.keys(stage.languages)[0];
+      const language = resolveLanguage(stage, preferredLanguage);
       setUi({
         stageId: stage.id,
         language,
@@ -85,7 +98,7 @@ export default function App() {
         currentStep: 0,
       });
     }
-  }, [ui]);
+  }, [ui, preferredLanguage]);
 
   const toggleTheme = () => {
     const next = !dark;
@@ -97,8 +110,8 @@ export default function App() {
   const selectStage = (stageId: string) => {
     const stage = allStages.find((s) => s.id === stageId);
     if (!stage) return;
-    const langKeys = Object.keys(stage.languages);
-    const language = langKeys[0];
+    // Prefer the global language if this stage has it
+    const language = resolveLanguage(stage, preferredLanguage ?? ui?.language ?? null);
     const defaultVariant = stage.languages[language].defaultVariant;
     setUi({
       stageId,
@@ -110,7 +123,16 @@ export default function App() {
   };
 
   const updateUi = (partial: Partial<StageUIState>) => {
-    setUi((prev) => (prev ? { ...prev, ...partial } : prev));
+    setUi((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev, ...partial };
+      // When language changes, treat it as the new global preference
+      if (partial.language && partial.language !== prev.language) {
+        setPreferredLanguage(partial.language);
+        localStorage.setItem(LANG_STORAGE_KEY, partial.language);
+      }
+      return next;
+    });
   };
 
   const currentStage = ui ? allStages.find((s) => s.id === ui.stageId) || null : null;
