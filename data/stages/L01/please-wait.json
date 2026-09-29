@@ -1,0 +1,72 @@
+{
+  "id": "please-wait",
+  "level": "L01",
+  "title": { "en": "Please wait" },
+  "circumstance": {
+    "en": "You need a moment — someone is about to act, or you need them to hold on briefly."
+  },
+  "status": "ready",
+  "sourceInspiration": "L01 basic action — simple concrete request to wait",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "ちょっと待ってください。",
+          "romanization": "chotto matte kudasai",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "こちらへどうぞ。", "romanization": "kochira e douzo" },
+            { "speaker": "customer", "text": "すみません、ちょっと待ってください。", "romanization": "sumimasen, chotto matte kudasai" },
+            { "speaker": "staff", "text": "はい、どうぞ。", "romanization": "hai, douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "ちょっと待って。",
+          "romanization": "chotto matte",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "こっち。", "romanization": "kocchi" },
+            { "speaker": "customer", "text": "ちょっと待って。", "romanization": "chotto matte" },
+            { "speaker": "staff", "text": "はい。", "romanization": "hai" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1559925393-8be0ec67b7c1?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Attendez un moment, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "Par ici, s'il vous plaît." },
+            { "speaker": "customer", "text": "Attendez un moment, s'il vous plaît." },
+            { "speaker": "staff", "text": "Oui, bien sûr." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
