@@ -14,7 +14,7 @@
       "variants": {
         "polite": {
           "label": "Polite",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "トイレはどこですか。",
           "romanization": "toire wa doko desu ka",
           "characters": [
@@ -29,7 +29,7 @@
         },
         "casual": {
           "label": "Casual",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "トイレどこ？",
           "romanization": "toire doko?",
           "characters": [
@@ -50,7 +50,7 @@
       "variants": {
         "standard": {
           "label": "Standard",
-          "background": "/assets/fr/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "Où sont les toilettes ?",
           "romanization": null,
           "characters": [
