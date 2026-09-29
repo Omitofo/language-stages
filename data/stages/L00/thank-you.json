@@ -1,0 +1,69 @@
+{
+  "id": "thank-you",
+  "level": "L00",
+  "title": { "en": "Thank you" },
+  "circumstance": {
+    "en": "You have just received help, an answer, an object, or any small service. You want to close the interaction politely."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S008-thank-you.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "ありがとうございます。",
+          "romanization": "arigatou gozaimasu",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" },
+            { "speaker": "staff", "text": "どういたしまして。", "romanization": "dou itashimashite" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "ありがとう。",
+          "romanization": "arigatou",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "どうぞ。", "romanization": "douzo" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" },
+            { "speaker": "staff", "text": "いいえ。", "romanization": "iie" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Merci.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "Voilà." },
+            { "speaker": "customer", "text": "Merci." },
+            { "speaker": "staff", "text": "De rien." }
+          ]
+        }
+      }
+    }
+  }
+}
