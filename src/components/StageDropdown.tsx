@@ -9,8 +9,7 @@ interface Props {
 }
 
 /**
- * Mobile-only stage picker: a button that opens a scrollable dropdown menu.
- * Lives just above the stage canvas.
+ * Mobile-only stage picker. Desktop uses the always-open Sidebar.
  */
 export default function StageDropdown({
   levels,
@@ -21,7 +20,6 @@ export default function StageDropdown({
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
@@ -51,7 +49,7 @@ export default function StageDropdown({
       >
         <span className="truncate text-left">{label}</span>
         <svg
-          className={`w-4 h-4 shrink-0 text-[rgb(var(--muted))] transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 shrink-0 text-[rgb(var(--muted))] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -72,8 +70,10 @@ export default function StageDropdown({
         >
           {levels.map((level) => (
             <div key={level.id} className="mb-1">
-              <div className="px-4 py-1 text-[10px] uppercase tracking-widest text-[rgb(var(--muted))] font-medium">
-                {level.id} — {level.name}
+              <div className="px-4 py-1.5 text-[10px] uppercase tracking-swiss text-[rgb(var(--muted))] font-medium">
+                {level.id}
+                <span className="mx-1.5 opacity-40">·</span>
+                {level.name}
               </div>
               {level.stages.map((stage) => {
                 const isActive = stage.id === activeStageId;
@@ -88,10 +88,10 @@ export default function StageDropdown({
                       setOpen(false);
                     }}
                     className={`
-                      w-full text-left px-4 py-2.5 text-sm transition
+                      w-full text-left px-4 py-2.5 text-sm transition-colors duration-150
                       ${isActive
-                        ? 'bg-neon-cyan/15 text-neon-cyan font-medium'
-                        : 'hover:bg-black/5 dark:hover:bg-white/5 text-[rgb(var(--fg))]'}
+                        ? 'nav-active'
+                        : 'text-[rgb(var(--fg))] hover:bg-black/[0.04] dark:hover:bg-white/[0.05]'}
                     `}
                   >
                     {stage.title.en}
