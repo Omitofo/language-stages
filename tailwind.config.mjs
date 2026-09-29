@@ -5,29 +5,48 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Controlled cyberpunk / vaporwave accents
-        neon: {
-          cyan: '#22d3ee',
-          magenta: '#e879f9',
-          blue: '#38bdf8',
+        accent: {
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          fg: 'rgb(var(--accent-fg) / <alpha-value>)',
         },
-        glass: {
-          light: 'rgba(255, 255, 255, 0.65)',
-          dark: 'rgba(15, 23, 42, 0.65)',
+        secondary: {
+          DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
+        },
+        // Keep neon aliases mapped to new system so old class names still work during transition
+        neon: {
+          cyan: 'rgb(var(--accent))',
+          magenta: 'rgb(var(--secondary))',
+          blue: 'rgb(var(--accent))',
         },
       },
       fontFamily: {
-        // Will be refined once we pick exact fonts
-        display: ['Satoshi', 'Cabinet Grotesk', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        display: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'sans-serif',
+        ],
+        sans: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'sans-serif',
+        ],
       },
       backdropBlur: {
         glass: '16px',
       },
       boxShadow: {
-        glass: '0 8px 32px 0 rgba(0, 0, 0, 0.12)',
+        glass: '0 8px 32px 0 rgba(0, 0, 0, 0.08)',
         'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
-        neon: '0 0 20px rgba(34, 211, 238, 0.35)',
+        neon: '0 0 0 1px rgb(var(--accent) / 0.25)',
+      },
+      letterSpacing: {
+        swiss: '0.12em',
       },
     },
   },
