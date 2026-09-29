@@ -14,7 +14,7 @@
       "variants": {
         "polite": {
           "label": "Polite",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "すみません、日本語を勉強しています。",
           "romanization": "sumimasen, nihongo o benkyou shiteimasu",
           "characters": [
@@ -31,7 +31,7 @@
         },
         "casual": {
           "label": "Casual",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "日本語勉強してる。",
           "romanization": "nihongo benkyou shiteru",
           "characters": [
@@ -53,7 +53,7 @@
       "variants": {
         "standard": {
           "label": "Standard",
-          "background": "/assets/fr/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "Je suis en train d'apprendre le japonais.",
           "romanization": null,
           "characters": [
