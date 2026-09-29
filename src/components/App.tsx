@@ -5,36 +5,52 @@ import Sidebar from './Sidebar/Sidebar';
 import StageView from './StageView/StageView';
 
 // Import all stages at build time (static)
-import askForTheBill from '../../data/stages/L00/ask-for-the-bill.json';
-import whereIsTheToilet from '../../data/stages/L00/where-is-the-toilet.json';
-import askForWater from '../../data/stages/L00/ask-for-water.json';
-import howMuchIsIt from '../../data/stages/L00/how-much-is-it.json';
-import whereIsTheStation from '../../data/stages/L00/where-is-the-station.json';
-import onePlease from '../../data/stages/L00/one-please.json';
+// L00 — Survival
+import excuseMe from '../../data/stages/L00/excuse-me.json';
 import thisOnePlease from '../../data/stages/L00/this-one-please.json';
+import onePlease from '../../data/stages/L00/one-please.json';
+import twoPlease from '../../data/stages/L00/two-please.json';
+import askForWater from '../../data/stages/L00/ask-for-water.json';
+import askForCoffee from '../../data/stages/L00/ask-for-coffee.json';
+import askForTea from '../../data/stages/L00/ask-for-tea.json';
+import askForTheBill from '../../data/stages/L00/ask-for-the-bill.json';
+import howMuchIsIt from '../../data/stages/L00/how-much-is-it.json';
+import whatIsThis from '../../data/stages/L00/what-is-this.json';
+import whereIsIt from '../../data/stages/L00/where-is-it.json';
+import whereIsTheToilet from '../../data/stages/L00/where-is-the-toilet.json';
+import whereIsTheStation from '../../data/stages/L00/where-is-the-station.json';
+import whereIsTheExit from '../../data/stages/L00/where-is-the-exit.json';
 import iDontUnderstand from '../../data/stages/L00/i-dont-understand.json';
 import askToRepeat from '../../data/stages/L00/ask-to-repeat.json';
 import imLearningJapanese from '../../data/stages/L00/im-learning-japanese.json';
 import speakSlowly from '../../data/stages/L00/speak-slowly.json';
-import whatIsThis from '../../data/stages/L00/what-is-this.json';
-import whereIsIt from '../../data/stages/L00/where-is-it.json';
 import thankYou from '../../data/stages/L00/thank-you.json';
+// L01 — Basic Action
+import iWantThis from '../../data/stages/L01/i-want-this.json';
 
 const allStages: Stage[] = [
+  // L00 — Survival (attention → request → info → repair → close)
+  excuseMe as Stage,
   thisOnePlease as Stage,
+  onePlease as Stage,
+  twoPlease as Stage,
+  askForWater as Stage,
+  askForCoffee as Stage,
+  askForTea as Stage,
+  askForTheBill as Stage,
+  howMuchIsIt as Stage,
+  whatIsThis as Stage,
+  whereIsIt as Stage,
+  whereIsTheToilet as Stage,
+  whereIsTheStation as Stage,
+  whereIsTheExit as Stage,
   iDontUnderstand as Stage,
   askToRepeat as Stage,
   imLearningJapanese as Stage,
   speakSlowly as Stage,
-  whatIsThis as Stage,
-  whereIsIt as Stage,
-  whereIsTheToilet as Stage,
-  askForWater as Stage,
-  askForTheBill as Stage,
-  howMuchIsIt as Stage,
-  whereIsTheStation as Stage,
-  onePlease as Stage,
   thankYou as Stage,
+  // L01 — Basic Action
+  iWantThis as Stage,
 ];
 
 const LANG_STORAGE_KEY = 'ls-language';
