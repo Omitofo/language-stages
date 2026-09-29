@@ -14,7 +14,7 @@
       "variants": {
         "polite": {
           "label": "Polite",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "お水をください。",
           "romanization": "o-mizu o kudasai",
           "characters": [
@@ -30,7 +30,7 @@
         },
         "casual": {
           "label": "Casual",
-          "background": "/assets/ja/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "水ください。",
           "romanization": "mizu kudasai",
           "characters": [
@@ -52,7 +52,7 @@
       "variants": {
         "standard": {
           "label": "Standard",
-          "background": "/assets/fr/cafe-bill.webp",
+          "background": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80&auto=format&fit=crop",
           "corePhrase": "De l'eau, s'il vous plaît.",
           "romanization": null,
           "characters": [
