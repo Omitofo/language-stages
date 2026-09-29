@@ -1,0 +1,74 @@
+{
+  "id": "im-learning-japanese",
+  "level": "L00",
+  "title": { "en": "I'm learning Japanese" },
+  "circumstance": {
+    "en": "You are in a real interaction and want to quickly explain that you are still learning so the other person can adjust."
+  },
+  "status": "ready",
+  "sourceInspiration": "japanese-learning-garden/S004-im-learning-japanese.md",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "すみません、日本語を勉強しています。",
+          "romanization": "sumimasen, nihongo o benkyou shiteimasu",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "ご注文はお決まりですか。", "romanization": "go-chuumon wa okimari desu ka" },
+            { "speaker": "customer", "text": "すみません、わかりません。", "romanization": "sumimasen, wakarimasen" },
+            { "speaker": "customer", "text": "日本語を勉強しています。", "romanization": "nihongo o benkyou shiteimasu" },
+            { "speaker": "staff", "text": "あ、ゆっくり話しますね。", "romanization": "a, yukkuri hanashimasu ne" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "/assets/ja/cafe-bill.webp",
+          "corePhrase": "日本語勉強してる。",
+          "romanization": "nihongo benkyou shiteru",
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "注文決まった？", "romanization": "chuumon kimatta?" },
+            { "speaker": "customer", "text": "わからない。日本語勉強してる。", "romanization": "wakaranai. nihongo benkyou shiteru" },
+            { "speaker": "staff", "text": "ゆっくりね。", "romanization": "yukkuri ne" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "/assets/fr/cafe-bill.webp",
+          "corePhrase": "Je suis en train d'apprendre le japonais.",
+          "romanization": null,
+          "characters": [
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 18, "y": 58 } },
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 70, "y": 50 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "Vous avez choisi ?" },
+            { "speaker": "customer", "text": "Pardon, je ne comprends pas." },
+            { "speaker": "customer", "text": "Je suis en train d'apprendre le japonais." },
+            { "speaker": "staff", "text": "Ah d'accord, je parle plus lentement." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
