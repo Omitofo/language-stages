@@ -64,8 +64,8 @@ export default function StageView({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header — centered controls, theme icon on the right */}
-      <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 md:h-12 glass !border-0 shrink-0 z-30">
+      {/* Header — centered controls, theme on the right */}
+      <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-6 h-14 md:h-12 glass !border-y-0 !border-x-0 !rounded-none shrink-0 z-30">
         <LanguageSwitcher
           languages={availableLanguages.map((code) => ({
             code,
@@ -84,21 +84,33 @@ export default function StageView({
             onChange={setVariant}
           />
         )}
-        {/* Theme toggle — icon only, right side */}
         <button
           type="button"
           onClick={onToggleTheme}
-          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg text-lg leading-none hover:bg-black/5 dark:hover:bg-white/10 transition"
+          className="
+            absolute right-3 sm:right-4 top-1/2 -translate-y-1/2
+            p-2 rounded-lg
+            text-[rgb(var(--muted))]
+            hover:bg-black/[0.05] dark:hover:bg-white/[0.08]
+            hover:text-[rgb(var(--fg))]
+            transition-colors duration-150
+          "
           aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
           title={dark ? 'Light mode' : 'Dark mode'}
         >
-          {dark ? '☀️' : '🌙'}
+          {dark ? (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1.5M12 19.5V21M4.5 12H3m18 0h-1.5M6.34 6.34l1.06 1.06M16.6 16.6l1.06 1.06M6.34 17.66l1.06-1.06M16.6 7.4l1.06-1.06M12 8a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+          )}
         </button>
       </div>
 
-      {/* Stage + controls */}
       <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 py-3 sm:py-4">
-        {/* Mobile dropdown sits just above the stage image */}
         <div className="w-full max-w-6xl lg:max-w-7xl">
           <StageDropdown
             levels={levels}
@@ -114,9 +126,9 @@ export default function StageView({
             max-w-6xl lg:max-w-7xl
             h-[min(52vh,480px)] sm:h-[min(56vh,520px)] md:h-[min(58vh,560px)]
             rounded-2xl overflow-hidden
-            border border-white/25 dark:border-white/10
-            shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]
-            bg-slate-900/20
+            border border-[rgb(var(--glass-border)/0.5)]
+            shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_12px_40px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.1)]
+            bg-[rgb(var(--surface))]
             shrink-0
           "
         >
@@ -128,9 +140,8 @@ export default function StageView({
             }}
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20 pointer-events-none" />
 
-          {/* Mobile bubble — staff higher, customer a bit lower */}
           {currentTurn && (
             <div
               className={`
@@ -147,7 +158,6 @@ export default function StageView({
             </div>
           )}
 
-          {/* Characters + desktop bubble anchored above the speaker */}
           <div className="absolute inset-0 overflow-hidden">
             {variant.characters?.map((ch) => {
               const isSpeaking = ch.id === currentSpeaker;
@@ -173,7 +183,6 @@ export default function StageView({
                     top: isCustomer ? '42%' : '40%',
                   }}
                 >
-                  {/* Desktop/tablet: bubble sits directly above this character */}
                   {isSpeaking && currentTurn && (
                     <div className="hidden md:block absolute bottom-full mb-1 left-1/2 -translate-x-1/2 w-[min(280px,42vw)] z-20">
                       <Dialogue turn={currentTurn} pointerOffset={50} />
