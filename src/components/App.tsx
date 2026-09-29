@@ -13,16 +13,28 @@ import whereIsTheStation from '../../data/stages/L00/where-is-the-station.json';
 import onePlease from '../../data/stages/L00/one-please.json';
 import thisOnePlease from '../../data/stages/L00/this-one-please.json';
 import iDontUnderstand from '../../data/stages/L00/i-dont-understand.json';
+import askToRepeat from '../../data/stages/L00/ask-to-repeat.json';
+import imLearningJapanese from '../../data/stages/L00/im-learning-japanese.json';
+import speakSlowly from '../../data/stages/L00/speak-slowly.json';
+import whatIsThis from '../../data/stages/L00/what-is-this.json';
+import whereIsIt from '../../data/stages/L00/where-is-it.json';
+import thankYou from '../../data/stages/L00/thank-you.json';
 
 const allStages: Stage[] = [
   thisOnePlease as Stage,
   iDontUnderstand as Stage,
+  askToRepeat as Stage,
+  imLearningJapanese as Stage,
+  speakSlowly as Stage,
+  whatIsThis as Stage,
+  whereIsIt as Stage,
   whereIsTheToilet as Stage,
   askForWater as Stage,
   askForTheBill as Stage,
   howMuchIsIt as Stage,
   whereIsTheStation as Stage,
   onePlease as Stage,
+  thankYou as Stage,
 ];
 
 function groupByLevel(stages: Stage[]): LevelGroup[] {
