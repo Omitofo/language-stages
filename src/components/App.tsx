@@ -27,6 +27,8 @@ import speakSlowly from '../../data/stages/L00/speak-slowly.json';
 import thankYou from '../../data/stages/L00/thank-you.json';
 // L01 — Basic Action
 import iWantThis from '../../data/stages/L01/i-want-this.json';
+import pleaseWait from '../../data/stages/L01/please-wait.json';
+import thisWay from '../../data/stages/L01/this-way.json';
 
 const allStages: Stage[] = [
   // L00 — Survival (attention → request → info → repair → close)
@@ -51,6 +53,8 @@ const allStages: Stage[] = [
   thankYou as Stage,
   // L01 — Basic Action
   iWantThis as Stage,
+  pleaseWait as Stage,
+  thisWay as Stage,
 ];
 
 const LANG_STORAGE_KEY = 'ls-language';
