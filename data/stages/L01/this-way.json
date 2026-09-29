@@ -1,0 +1,72 @@
+{
+  "id": "this-way",
+  "level": "L01",
+  "title": { "en": "This way" },
+  "circumstance": {
+    "en": "Someone is guiding you, or you need to point someone in a direction — a simple directional cue."
+  },
+  "status": "ready",
+  "sourceInspiration": "L01 basic action — simple directional phrase",
+  "languages": {
+    "ja": {
+      "label": "日本語",
+      "defaultVariant": "polite",
+      "variants": {
+        "polite": {
+          "label": "Polite",
+          "background": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "こちらへどうぞ。",
+          "romanization": "kochira e douzo",
+          "characters": [
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 28, "y": 52 } },
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 68, "y": 58 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "こちらへどうぞ。", "romanization": "kochira e douzo" },
+            { "speaker": "customer", "text": "はい、ありがとうございます。", "romanization": "hai, arigatou gozaimasu" },
+            { "speaker": "staff", "text": "こちらです。", "romanization": "kochira desu" },
+            { "speaker": "customer", "text": "ありがとうございます。", "romanization": "arigatou gozaimasu" }
+          ]
+        },
+        "casual": {
+          "label": "Casual",
+          "background": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "こっち。",
+          "romanization": "kocchi",
+          "characters": [
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 28, "y": 52 } },
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 68, "y": 58 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "こっち。", "romanization": "kocchi" },
+            { "speaker": "customer", "text": "はい。", "romanization": "hai" },
+            { "speaker": "staff", "text": "ここ。", "romanization": "koko" },
+            { "speaker": "customer", "text": "ありがとう。", "romanization": "arigatou" }
+          ]
+        }
+      }
+    },
+    "fr": {
+      "label": "Français",
+      "defaultVariant": "standard",
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "background": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&q=80&auto=format&fit=crop",
+          "corePhrase": "Par ici, s'il vous plaît.",
+          "romanization": null,
+          "characters": [
+            { "id": "staff", "src": "/assets/characters/staff-apron.png", "position": { "x": 28, "y": 52 } },
+            { "id": "customer", "src": "/assets/characters/customer-casual.png", "position": { "x": 68, "y": 58 } }
+          ],
+          "dialogue": [
+            { "speaker": "staff", "text": "Par ici, s'il vous plaît." },
+            { "speaker": "customer", "text": "Oui, merci." },
+            { "speaker": "staff", "text": "C'est ici." },
+            { "speaker": "customer", "text": "Merci." }
+          ]
+        }
+      }
+    }
+  }
+}
